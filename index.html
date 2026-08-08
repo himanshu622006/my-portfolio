@@ -1,22 +1,16 @@
-<script>
-    let password = prompt("Enter password to view portfolio:");
-    if (password !== "9311325718") {
-        document.body.innerHTML = "<h1>Access Denied</h1>";
-    }
-</script>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Portfolio</title>
+    <title>Himanshu Tanwar | Portfolio</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
     <!-- Header / Navbar -->
     <header>
-        <div class="logo">Portfolio.</div>
+        <div class="logo">HIMANSHU<span class="dot">.</span></div>
         <nav>
             <a href="#about">About</a>
             <a href="#projects">Projects</a>
@@ -27,41 +21,51 @@
 
     <!-- Hero Section -->
     <section class="hero">
-        <h1>Hi, I'm <span class="highlight">Siri</span> 👋</h1>
-        <p>B.Tech 3rd Year CSE Student & Aspiring Developer</p>
-        <a href="#projects" class="btn">View My Work</a>
+        <div class="hero-content">
+            <h1>Hi, I'm <span class="highlight">Bimbo</span> 👋</h1>
+            <p>B.Tech 3rd Year CSE Student & Full-Stack Developer</p>
+            <a href="#projects" class="btn">Explore Work</a>
+        </div>
     </section>
 
     <!-- About Section -->
     <section id="about" class="section">
         <h2>About Me</h2>
-        <p>I am a 3rd-year B.Tech Computer Science student passionate about building things for the web and exploring new technologies. Currently sharpening my skills in data structures, algorithms, and full-stack development.</p>
+        <p>I am Himanshu Tanwar (Bimbo), a 3rd-year B.Tech Computer Science student. I love building high-performance web applications, solving complex algorithmic problems, and exploring modern tech stacks.</p>
     </section>
 
     <!-- Projects Section -->
     <section id="projects" class="section">
-        <h2>Projects</h2>
+        <h2>Featured Projects</h2>
         <div class="project-grid">
             <div class="project-card">
                 <h3>Project One</h3>
-                <p>A brief description of what this project does and the tech stack used (e.g., HTML, CSS, JavaScript).</p>
-                <a href="#" target="_blank">GitHub</a> | <a href="#" target="_blank">Live Demo</a>
+                <p>A brief description of your amazing project, the problem it solves, and features built.</p>
+                <div class="project-links">
+                    <a href="#" target="_blank">GitHub</a>
+                    <a href="#" target="_blank">Live Demo</a>
+                </div>
             </div>
             <div class="project-card">
                 <h3>Project Two</h3>
-                <p>A brief description of your second project, highlighting key features and problems solved.</p>
-                <a href="#" target="_blank">GitHub</a> | <a href="#" target="_blank">Live Demo</a>
+                <p>A brief description of your second project, highlighting the tech stack and architecture.</p>
+                <div class="project-links">
+                    <a href="#" target="_blank">GitHub</a>
+                    <a href="#" target="_blank">Live Demo</a>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- Skills Section -->
     <section id="skills" class="section">
-        <h2>Skills</h2>
+        <h2>Skills & Tech Stack</h2>
         <ul class="skills-list">
             <li>C++ / Python</li>
+            <li>JavaScript (ES6+)</li>
             <li>HTML5 & CSS3</li>
-            <li>JavaScript</li>
+            <li>React.js</li>
+            <li>Node.js & Express</li>
             <li>Git & GitHub</li>
             <li>Data Structures & Algorithms</li>
         </ul>
@@ -70,13 +74,13 @@
     <!-- Contact Section -->
     <section id="contact" class="section">
         <h2>Get In Touch</h2>
-        <p>Feel free to reach out to me via email or LinkedIn!</p>
-        <p>Email: your.email@example.com</p>
+        <p>Let's connect! Reach out to me via email or check out my profiles.</p>
+        <p class="email-text">Email: your.email@example.com</p>
     </section>
 
     <footer>
-        <p>&copy; 2026 Siri. All rights reserved.</p>
+        <p>&copy; 2026 Himanshu Tanwar (Bimbo). All rights reserved.</p>
     </footer>
 
 </body>
-</html> 
+</html>
