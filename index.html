@@ -1,125 +1,617 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Himanshu's personal engineering portfolio with Heerix AI assistant.">
-  <title>Himanshu | Portfolio</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Himanshu | Portfolio</title>
+
+    <meta
+        name="description"
+        content="Himanshu's personal engineering portfolio."
+    >
+
+    <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-  <!-- ENTRY SCREEN -->
-  <section id="entryScreen" class="entry-screen">
-    <div class="entry-grid"></div>
-    <div class="entry-left">
-      <div class="ghost-orb">
-        <div class="ghost">👻</div>
-      </div>
-      <div class="heerix-message">
-        <span class="message-label">HEERIX</span>
-        <p id="greeting">Hello Himanshu.<br>Ready to enter, or did you forget the password already?</p>
-      </div>
-      <div class="system-status">HEERIX AI SYSTEM // ONLINE</div>
-    </div>
 
-    <div class="entry-right">
-      <div class="access-card">
-        <div class="lock-icon">⌑</div>
-        <p class="eyebrow">AUTHENTICATION REQUIRED</p>
-        <h1>PORTFOLIO ACCESS</h1>
-        <label for="accessCode">ENTER ACCESS CODE</label>
-        <input id="accessCode" type="password" autocomplete="off" placeholder="Enter access code">
-        <button id="unlockBtn">UNLOCK</button>
-        <p id="accessError" class="access-error" aria-live="polite"></p>
-        <span class="restricted">UNAUTHORIZED ACCESS IS PROHIBITED</span>
-      </div>
-    </div>
-  </section>
+    <!-- =====================================================
+         ENTRY / SECURITY SCREEN
+    ====================================================== -->
 
-  <!-- HOME -->
-  <main id="portfolio" class="portfolio hidden">
-    <header class="navbar">
-      <a class="brand" href="#home" aria-label="Home">
-        <span class="brand-ghost">👻</span>
-        <span><strong>HEERIX</strong><small>AI ASSISTANT</small></span>
-      </a>
-      <nav>
-        <a class="active" href="#home">HOME</a>
-        <a href="#about">ABOUT</a>
-        <a href="#education">EDUCATION</a>
-        <a href="#skills">SKILLS</a>
-        <a href="#projects">PROJECTS</a>
-        <a href="#certifications">CERTIFICATIONS</a>
-        <a href="#experience">EXPERIENCE</a>
-        <a href="#contact">CONTACT</a>
-      </nav>
-      <a class="connect-btn" href="#contact">LET'S CONNECT</a>
-    </header>
+    <section id="entryScreen" class="entry-screen">
 
-    <section id="home" class="hero section">
-      <div class="hero-copy">
-        <div class="eyebrow">HI, I'M</div>
-        <h2>HIMANSHU</h2>
-        <h3>Computer Science &amp; Business Systems Student</h3>
-        <p>
-          I'm an engineering student passionate about building innovative
-          solutions through code, data and technology. Exploring the
-          intersection of software, AI/ML and business to create impact.
-        </p>
-        <div class="hero-actions">
-          <a class="primary-btn" href="#projects">EXPLORE MY WORK</a>
-          <a class="text-btn" href="#" id="resumeBtn">DOWNLOAD RESUME</a>
+        <div class="entry-background"></div>
+
+        <!-- LEFT : HEERIX -->
+        <div class="entry-left">
+
+            <div class="heerix-orbit">
+                <div class="orbit-ring"></div>
+
+                <img
+                    src="assets/heerix.png"
+                    alt="Heerix"
+                    class="entry-heerix"
+                >
+            </div>
+
+            <div class="heerix-introduction">
+
+                <span class="system-label">
+                    HEERIX // AI ASSISTANT
+                </span>
+
+                <h1>Hello Himanshu.</h1>
+
+                <p>
+                    Ready to enter?
+                </p>
+
+                <small>
+                    Portfolio system online.
+                </small>
+
+            </div>
+
         </div>
-      </div>
 
-      <div class="hero-visual">
-        <div class="tech-ring"></div>
-        <img src="assets/profile.jpg" alt="Himanshu" class="profile-photo">
-      </div>
 
-      <button class="scroll-down" onclick="document.querySelector('#about').scrollIntoView({behavior:'smooth'})">
-        SCROLL DOWN
-        <span>↓</span>
-      </button>
+        <!-- RIGHT : PASSWORD -->
+        <div class="entry-right">
+
+            <div class="access-card">
+
+                <div class="access-icon">
+                    ◇
+                </div>
+
+                <span class="access-label">
+                    SECURE AUTHENTICATION
+                </span>
+
+                <h2>
+                    PORTFOLIO ACCESS
+                </h2>
+
+                <p>
+                    Enter your access code to continue.
+                </p>
+
+                <label for="accessCode">
+                    ACCESS CODE
+                </label>
+
+                <input
+                    id="accessCode"
+                    type="password"
+                    inputmode="numeric"
+                    autocomplete="off"
+                    placeholder="Enter access code"
+                >
+
+                <button id="unlockBtn">
+                    UNLOCK
+                </button>
+
+                <div
+                    id="accessError"
+                    class="access-error"
+                ></div>
+
+                <span class="security-note">
+                    AUTHORIZED ACCESS ONLY
+                </span>
+
+            </div>
+
+        </div>
+
     </section>
 
-    <!-- Placeholder sections: kept minimal for now so navigation works.
-         We will design each one properly in the next phases. -->
-    <section id="about" class="placeholder section"><span>01</span><h2>ABOUT ME</h2><p>About Me will be designed in the next phase.</p></section>
-    <section id="education" class="placeholder section"><span>02</span><h2>EDUCATION</h2><p>Education will be designed in the next phase.</p></section>
-    <section id="skills" class="placeholder section"><span>03</span><h2>SKILLS</h2><p>Skills will be designed in the next phase.</p></section>
-    <section id="projects" class="placeholder section"><span>04</span><h2>PROJECTS</h2><p>Projects will be designed in the next phase.</p></section>
-    <section id="certifications" class="placeholder section"><span>05</span><h2>CERTIFICATIONS</h2><p>Certifications will be designed in the next phase.</p></section>
-    <section id="experience" class="placeholder section"><span>06</span><h2>EXPERIENCE</h2><p>Experience will be designed in the next phase.</p></section>
 
-    <section id="contact" class="contact section">
-      <div>
-        <div class="eyebrow">GET IN TOUCH</div>
-        <h2>CONTACT ME</h2>
-        <p>Have a question or want to work together? Fill out the details and I'll get back to you on my email.</p>
-      </div>
-      <form id="contactForm">
-        <input id="contactName" required placeholder="Your Name">
-        <input id="contactEmail" required type="email" placeholder="Your Email">
-        <input id="contactSubject" required placeholder="Subject">
-        <textarea id="contactMessage" required placeholder="Your Message"></textarea>
-        <button class="primary-btn" type="submit">SEND DETAILS</button>
-      </form>
-    </section>
-  </main>
 
-  <!-- HEERIX FLOATING ASSISTANT -->
-  <button class="heerix-float" id="heerixBtn" aria-label="Ask Heerix">
-    <span class="mini-ghost">👻</span>
-    <span><strong>HEERIX</strong><small>Ask me anything</small></span>
-  </button>
+    <!-- =====================================================
+         MAIN PORTFOLIO
+    ====================================================== -->
 
-  <div class="heerix-chat" id="heerixChat">
-    <div class="chat-head"><strong>HEERIX</strong><button id="closeChat">×</button></div>
-    <p>Hello Himanshu. Need help navigating, or are you here to test me?</p>
-    <button onclick="alert('Heerix will become fully interactive in a later phase.')">ASK HEERIX</button>
-  </div>
+    <div id="portfolio" class="portfolio hidden">
 
-  <script src="script.js"></script>
+
+        <!-- =================================================
+             NAVIGATION
+        ================================================== -->
+
+        <header class="navbar">
+
+            <a href="#home" class="brand">
+
+                <img
+                    src="assets/heerix.png"
+                    alt="Heerix"
+                >
+
+                <div>
+                    <strong>HEERIX</strong>
+                    <small>AI ASSISTANT</small>
+                </div>
+
+            </a>
+
+
+            <nav>
+
+                <a
+                    href="#home"
+                    class="active"
+                >
+                    HOME
+                </a>
+
+                <a href="#about">
+                    ABOUT
+                </a>
+
+                <a href="#education">
+                    EDUCATION
+                </a>
+
+                <a href="#skills">
+                    SKILLS
+                </a>
+
+                <a href="#projects">
+                    PROJECTS
+                </a>
+
+                <a href="#certifications">
+                    CERTIFICATIONS
+                </a>
+
+                <a href="#experience">
+                    EXPERIENCE
+                </a>
+
+                <a href="#contact">
+                    CONTACT
+                </a>
+
+            </nav>
+
+
+            <a
+                href="#contact"
+                class="connect-button"
+            >
+                LET'S CONNECT
+            </a>
+
+        </header>
+
+
+
+        <!-- =================================================
+             HOME
+        ================================================== -->
+
+        <main>
+
+            <section
+                id="home"
+                class="hero"
+            >
+
+                <div class="hero-background"></div>
+
+
+                <!-- LEFT CONTENT -->
+
+                <div class="hero-content">
+
+                    <span class="hero-kicker">
+                        HI, I'M
+                    </span>
+
+                    <h1>
+                        HIMANSHU
+                    </h1>
+
+                    <h2>
+                        Computer Science &amp;
+                        Business Systems Student
+                    </h2>
+
+                    <p>
+                        I'm an engineering student passionate
+                        about building innovative solutions
+                        through code, data and technology.
+                        Exploring the intersection of software,
+                        AI/ML and business to create impact.
+                    </p>
+
+
+                    <!-- MAIN HOME BUTTONS -->
+
+                    <div class="home-cards">
+
+                        <a
+                            href="#about"
+                            class="home-card"
+                        >
+                            <span class="card-number">
+                                01
+                            </span>
+
+                            <span>
+                                ABOUT ME
+                            </span>
+
+                            <b>
+                                →
+                            </b>
+                        </a>
+
+
+                        <a
+                            href="#education"
+                            class="home-card"
+                        >
+                            <span class="card-number">
+                                02
+                            </span>
+
+                            <span>
+                                EDUCATION
+                            </span>
+
+                            <b>
+                                →
+                            </b>
+                        </a>
+
+
+                        <a
+                            href="#projects"
+                            class="home-card"
+                        >
+                            <span class="card-number">
+                                03
+                            </span>
+
+                            <span>
+                                PROJECTS
+                            </span>
+
+                            <b>
+                                →
+                            </b>
+                        </a>
+
+
+                        <a
+                            href="#certifications"
+                            class="home-card"
+                        >
+                            <span class="card-number">
+                                04
+                            </span>
+
+                            <span>
+                                CERTIFICATIONS
+                            </span>
+
+                            <b>
+                                →
+                            </b>
+                        </a>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- RIGHT : PHOTO -->
+
+                <div class="hero-visual">
+
+                    <div class="tech-circle"></div>
+
+                    <div class="tech-circle-small"></div>
+
+                    <img
+                        src="assets/profile.jpg"
+                        alt="Himanshu"
+                        class="profile-photo"
+                    >
+
+                </div>
+
+
+                <!-- SCROLL -->
+
+                <button
+                    class="scroll-indicator"
+                    onclick="scrollToSection('about')"
+                >
+
+                    <span>
+                        SCROLL TO EXPLORE
+                    </span>
+
+                    <b>
+                        ↓
+                    </b>
+
+                </button>
+
+            </section>
+
+
+
+            <!-- =================================================
+                 PLACEHOLDER SECTIONS
+                 We will design these later.
+            ================================================== -->
+
+            <section
+                id="about"
+                class="placeholder-section"
+            >
+
+                <span>01</span>
+
+                <h2>
+                    ABOUT ME
+                </h2>
+
+                <p>
+                    This section will be designed next.
+                </p>
+
+            </section>
+
+
+
+            <section
+                id="education"
+                class="placeholder-section"
+            >
+
+                <span>02</span>
+
+                <h2>
+                    EDUCATION
+                </h2>
+
+                <p>
+                    This section will be designed later.
+                </p>
+
+            </section>
+
+
+
+            <section
+                id="skills"
+                class="placeholder-section"
+            >
+
+                <span>03</span>
+
+                <h2>
+                    SKILLS
+                </h2>
+
+                <p>
+                    This section will be designed later.
+                </p>
+
+            </section>
+
+
+
+            <section
+                id="projects"
+                class="placeholder-section"
+            >
+
+                <span>04</span>
+
+                <h2>
+                    PROJECTS
+                </h2>
+
+                <p>
+                    This section will be designed later.
+                </p>
+
+            </section>
+
+
+
+            <section
+                id="certifications"
+                class="placeholder-section"
+            >
+
+                <span>05</span>
+
+                <h2>
+                    CERTIFICATIONS
+                </h2>
+
+                <p>
+                    This section will be designed later.
+                </p>
+
+            </section>
+
+
+
+            <section
+                id="experience"
+                class="placeholder-section"
+            >
+
+                <span>06</span>
+
+                <h2>
+                    EXPERIENCE
+                </h2>
+
+                <p>
+                    This section will be designed later.
+                </p>
+
+            </section>
+
+
+
+            <!-- =================================================
+                 CONTACT
+                 Appears only after scrolling down.
+            ================================================== -->
+
+            <section
+                id="contact"
+                class="contact-section"
+            >
+
+                <div class="contact-intro">
+
+                    <span class="hero-kicker">
+                        GET IN TOUCH
+                    </span>
+
+                    <h2>
+                        CONTACT ME
+                    </h2>
+
+                    <p>
+                        Have a question, want to work together,
+                        or simply want to connect?
+                        Send me your details and message.
+                    </p>
+
+                </div>
+
+
+                <form
+                    id="contactForm"
+                    class="contact-form"
+                >
+
+                    <input
+                        id="contactName"
+                        type="text"
+                        placeholder="Your Name"
+                        required
+                    >
+
+                    <input
+                        id="contactEmail"
+                        type="email"
+                        placeholder="Your Email"
+                        required
+                    >
+
+                    <input
+                        id="contactSubject"
+                        type="text"
+                        placeholder="Subject"
+                        required
+                    >
+
+                    <textarea
+                        id="contactMessage"
+                        placeholder="Your Message"
+                        required
+                    ></textarea>
+
+                    <button
+                        type="submit"
+                        class="send-button"
+                    >
+                        SEND DETAILS
+                    </button>
+
+                </form>
+
+            </section>
+
+        </main>
+
+
+
+        <!-- =================================================
+             FLOATING HEERIX
+        ================================================== -->
+
+        <button
+            id="heerixButton"
+            class="floating-heerix"
+        >
+
+            <img
+                src="assets/heerix.png"
+                alt="Heerix"
+            >
+
+            <div>
+
+                <strong>
+                    HEERIX
+                </strong>
+
+                <small>
+                    Ask me anything
+                </small>
+
+            </div>
+
+        </button>
+
+
+
+        <!-- =================================================
+             HEERIX CHAT
+        ================================================== -->
+
+        <div
+            id="heerixChat"
+            class="heerix-chat"
+        >
+
+            <div class="chat-header">
+
+                <strong>
+                    HEERIX
+                </strong>
+
+                <button id="closeChat">
+                    ×
+                </button>
+
+            </div>
+
+            <p>
+                Hello Himanshu. Need help navigating,
+                or are you here to test me?
+            </p>
+
+            <button class="ask-button">
+                ASK HEERIX
+            </button>
+
+        </div>
+
+
+    </div>
+
+
+    <script src="script.js"></script>
+
 </body>
 </html>
