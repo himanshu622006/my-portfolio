@@ -2138,12 +2138,11 @@ a {
 /* 1. Fade the access panel and background smoothly */
 .entry-screen.unlocking .entry-content {
     opacity: 0;
-    transform: translateX(40px);
-    pointer-events: none;
+    transform: translateX(25px);
 
     transition:
-        opacity 1.25s ease,
-        transform 1.25s cubic-bezier(.4, 0, .2, 1);
+        opacity 0.35s ease,
+        transform 0.45s ease;
 }
 
 .entry-screen.unlocking .access-footer {
@@ -2159,29 +2158,12 @@ a {
 
 
 /* 2. Put the Heerix visual above the lock screen */
-.entry-screen.unlocking .entry-visual {
-    position: fixed;
-    inset: 0;
-    width: 100vw;
-    height: 100vh;
-    min-height: 100vh;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    z-index: 9998;
-    pointer-events: none;
-
-    /* Smoothly brings Heerix from the left side to center */
-    animation: heerixVisualToCenter 2.5s cubic-bezier(.22,.75,.18,1) forwards;
-}
 
 
 /* 3. Keep the stage centered after the movement */
 .entry-screen.unlocking .heerix-stage {
     position: relative !important;
-
     left: auto !important;
     top: auto !important;
     margin: 0 !important;
@@ -2199,49 +2181,10 @@ a {
 
 
 /* Heerix visual moves smoothly toward the exact screen center */
-@keyframes heerixVisualToCenter {
-
-    0% {
-        transform: translateX(-25vw);
-    }
-
-    35% {
-        transform: translateX(-15vw);
-    }
-
-    70% {
-        transform: translateX(-5vw);
-    }
-
-    100% {
-        transform: translateX(0);
-    }
-}
 
 
-/* 4. Heerix gets a subtle cinematic zoom */
-@keyframes heerixStageFocus {
 
-    0% {
-        transform: scale(0.92);
-        opacity: 1;
-    }
 
-    35% {
-        transform: scale(0.96);
-        opacity: 1;
-    }
-
-    70% {
-        transform: scale(1.05);
-        opacity: 1;
-    }
-
-    100% {
-        transform: scale(1.12);
-        opacity: 1;
-    }
-}
 
 
 /* 5. Orbit rings accelerate during the movement */
@@ -2308,7 +2251,7 @@ a {
 .entry-screen.unlocking {
     animation:
         lockScreenFade
-        3.9s
+        2.8s
         ease
         forwards;
 
@@ -2363,32 +2306,26 @@ a {
     }
 }
 
+@keyframes heerixStageFocus {
+    0% {
+        transform: scale(0.90);
+        opacity: 1;
+    }
 
+    50% {
+        transform: scale(0.95);
+        opacity: 1;
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
 /* =========================================================
    RESPONSIVE TRANSITION
 ========================================================= */
 
-@media (max-width: 1000px) {
-
-    @keyframes heerixVisualToCenter {
-
-        0% {
-            transform: translateX(-18vw);
-        }
-
-        35% {
-            transform: translateX(-11vw);
-        }
-
-        70% {
-            transform: translateX(-4vw);
-        }
-
-        100% {
-            transform: translateX(0);
-        }
-    }
-}
 
 
 @media (max-width: 760px) {
@@ -2402,16 +2339,7 @@ a {
         transform: scale(0.72);
     }
 
-    @keyframes heerixVisualToCenter {
-
-        0% {
-            transform: translateX(0);
-        }
-
-        100% {
-            transform: translateX(0);
-        }
-    }
+ 
 
     @keyframes heerixStageFocus {
 
