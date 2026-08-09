@@ -2194,70 +2194,238 @@ a {
         centerOrbitFastReverse 1.7s cubic-bezier(.2,.8,.2,1) forwards;
 }
 
-/* Lock screen itself stays visible behind Heerix until the
-   center animation is almost finished, then fades away */
+/* =========================================================
+   HEERIX CENTER TRANSITION
+========================================================= */
+
+/* Access panel starts disappearing immediately */
+.entry-screen.unlocking .entry-content {
+    opacity: 0;
+    transform: translateX(45px);
+
+    transition:
+        opacity 0.9s ease,
+        transform 0.9s cubic-bezier(.4, 0, .2, 1);
+
+    pointer-events: none;
+}
+
+
+/* Footer disappears with access panel */
+.entry-screen.unlocking .access-footer {
+    opacity: 0;
+
+    transition:
+        opacity 0.7s ease;
+}
+
+
+/* Background becomes subtle */
+.entry-screen.unlocking .entry-background {
+    opacity: 0.2;
+
+    transition:
+        opacity 1s ease;
+}
+
+
+/* =========================================================
+   HEERIX MOVES TO CENTER AT THE SAME TIME
+========================================================= */
+
+.entry-screen.unlocking .heerix-stage {
+
+    transform:
+        translate(
+            var(--move-x),
+            var(--move-y)
+        )
+        scale(1.08);
+
+    transition:
+        transform 2.6s
+        cubic-bezier(.22, .75, .18, 1);
+
+    z-index: 50;
+}
+
+
+/* Heerix grows slightly while moving */
+
+.entry-screen.unlocking .heerix-wrap {
+
+    animation:
+        heerixCenterFocus
+        2.6s
+        cubic-bezier(.2,.8,.2,1)
+        forwards;
+}
+
+
+/* =========================================================
+   ORBIT ACCELERATION
+========================================================= */
+
+.entry-screen.unlocking .ring-one {
+    animation:
+        centerOrbitFast
+        2.6s
+        cubic-bezier(.2,.8,.2,1)
+        forwards;
+}
+
+.entry-screen.unlocking .ring-two {
+    animation:
+        centerOrbitFastReverse
+        2.6s
+        cubic-bezier(.2,.8,.2,1)
+        forwards;
+}
+
+.entry-screen.unlocking .orbit-one {
+    animation:
+        centerOrbitFast
+        2.6s
+        cubic-bezier(.2,.8,.2,1)
+        forwards;
+}
+
+.entry-screen.unlocking .orbit-two {
+    animation:
+        centerOrbitFastReverse
+        2.6s
+        cubic-bezier(.2,.8,.2,1)
+        forwards;
+}
+
+
+/* =========================================================
+   LOCK SCREEN FADES ONLY AFTER HEERIX REACHES CENTER
+========================================================= */
+
 .entry-screen.unlocking {
     animation:
-        lockFadeAfterCenter 1.7s ease forwards;
+        lockFadeAfterCenter
+        2.6s
+        ease
+        forwards;
 }
 
-/* Home page appears after the lock screen */
-.portfolio-enter {
-    animation:
-        homeReveal 1.15s cubic-bezier(.2,.8,.2,1) both;
-}
+
+/* =========================================================
+   HEERIX FOCUS
+========================================================= */
 
 @keyframes heerixCenterFocus {
+
     0% {
-        transform: scale(1);
+        transform:
+            scale(1);
+
         opacity: 1;
     }
 
-    45% {
-        transform: scale(1.04);
+    35% {
+        transform:
+            scale(1.03);
+
         opacity: 1;
     }
 
-    75% {
-        transform: scale(1.10);
+    65% {
+        transform:
+            scale(1.09);
+
+        opacity: 1;
+    }
+
+    85% {
+        transform:
+            scale(1.14);
+
         opacity: 1;
     }
 
     100% {
-        transform: scale(1.16);
+        transform:
+            scale(1.18);
+
         opacity: 1;
     }
 }
 
-/* Fast clockwise orbit */
+
+/* =========================================================
+   ORBIT — SLOW → FAST
+========================================================= */
+
 @keyframes centerOrbitFast {
+
     0% {
-        transform: rotate(0deg) scale(1);
+        transform:
+            rotate(0deg)
+            scale(1);
+    }
+
+    30% {
+        transform:
+            rotate(45deg)
+            scale(1.01);
+    }
+
+    65% {
+        transform:
+            rotate(210deg)
+            scale(1.04);
     }
 
     100% {
-        transform: rotate(540deg) scale(1.08);
+        transform:
+            rotate(540deg)
+            scale(1.08);
     }
 }
 
-/* Fast counter-clockwise orbit */
+
 @keyframes centerOrbitFastReverse {
+
     0% {
-        transform: rotate(360deg) scale(1);
+        transform:
+            rotate(360deg)
+            scale(1);
+    }
+
+    30% {
+        transform:
+            rotate(300deg)
+            scale(1.01);
+    }
+
+    65% {
+        transform:
+            rotate(70deg)
+            scale(1.04);
     }
 
     100% {
-        transform: rotate(-180deg) scale(1.08);
+        transform:
+            rotate(-180deg)
+            scale(1.08);
     }
 }
 
-/* Fade the old screen only at the end */
+
+/* =========================================================
+   LOCK SCREEN FINAL FADE
+========================================================= */
+
 @keyframes lockFadeAfterCenter {
+
     0% {
         opacity: 1;
     }
 
-    72% {
+    82% {
         opacity: 1;
     }
 
@@ -2265,40 +2433,83 @@ a {
         opacity: 0;
     }
 }
+
+
+/* =========================================================
+   HOME PAGE
+========================================================= */
+
+.portfolio-enter {
+
+    animation:
+        homeReveal
+        1.15s
+        cubic-bezier(.2,.8,.2,1)
+        both;
+}
+
 
 @keyframes homeReveal {
+
     0% {
         opacity: 0;
-        transform: scale(1.025);
-        filter: blur(8px);
+
+        transform:
+            scale(1.025);
+
+        filter:
+            blur(8px);
     }
 
     45% {
         opacity: 0.5;
-        filter: blur(3px);
+
+        filter:
+            blur(3px);
     }
 
     100% {
         opacity: 1;
-        transform: scale(1);
-        filter: blur(0);
+
+        transform:
+            scale(1);
+
+        filter:
+            blur(0);
     }
 }
 
-/* Keep transition usable on phones */
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
 @media (max-width: 760px) {
+
     .entry-screen.unlocking .entry-visual {
         width: 100vw;
         height: 100vh;
     }
 
     .entry-screen.unlocking .heerix-stage {
-        transform: scale(0.72);
+        transform:
+            translate(
+                var(--move-x),
+                var(--move-y)
+            )
+            scale(0.72);
     }
 }
 
+
 @media (max-width: 500px) {
+
     .entry-screen.unlocking .heerix-stage {
-        transform: scale(0.60);
+        transform:
+            translate(
+                var(--move-x),
+                var(--move-y)
+            )
+            scale(0.60);
     }
 }
