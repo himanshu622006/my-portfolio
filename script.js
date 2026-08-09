@@ -104,16 +104,16 @@ function unlockPortfolio() {
     }
 
 
-   /* =========================================================
-   CORRECT PASSWORD — LOCK → HOME ANIMATION
+  /* =========================================================
+   CORRECT PASSWORD
 ========================================================= */
 
 accessError.textContent = "";
 
-/* Start unlock animation */
+/* Start cinematic unlock */
 entryScreen.classList.add("unlocking");
 
-/* Wait for animation to finish */
+
 setTimeout(() => {
 
     entryScreen.classList.add("hidden");
@@ -122,7 +122,7 @@ setTimeout(() => {
 
     window.scrollTo(0, 0);
 
-    /* Start home page entrance */
+    /* Home entrance */
     portfolio.classList.add("portfolio-enter");
 
     setTimeout(() => {
