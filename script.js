@@ -104,33 +104,34 @@ function unlockPortfolio() {
     }
 
 
-    /* =====================================================
-       CORRECT PASSWORD
-    ===================================================== */
+   /* =========================================================
+   CORRECT PASSWORD — LOCK → HOME ANIMATION
+========================================================= */
 
-    if (accessError) {
-        accessError.textContent = "";
-    }
+accessError.textContent = "";
 
+/* Start unlock animation */
+entryScreen.classList.add("unlocking");
 
-    /*
-     * Start cinematic unlock animation.
-     */
+/* Wait for animation to finish */
+setTimeout(() => {
 
-    entryScreen.classList.add("unlocking");
+    entryScreen.classList.add("hidden");
 
+    portfolio.classList.remove("hidden");
 
-    if (unlockButton) {
+    window.scrollTo(0, 0);
 
-        unlockButton.disabled = true;
+    /* Start home page entrance */
+    portfolio.classList.add("portfolio-enter");
 
-        const buttonText =
-            unlockButton.querySelector("span");
+    setTimeout(() => {
+        portfolio.classList.remove("portfolio-enter");
+    }, 1200);
 
-        if (buttonText) {
-            buttonText.textContent = "ACCESS GRANTED";
-        }
-    }
+    showWelcomeMessage();
+
+}, 1100);
 
 
     /*
