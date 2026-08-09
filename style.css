@@ -1,5 +1,6 @@
 /* =========================================================
    HEERIX PORTFOLIO
+   MATTE BLACK • COBALT • COOL GREY
 ========================================================= */
 
 * {
@@ -13,15 +14,11 @@ html {
 }
 
 body {
+    margin: 0;
     background: #02050b;
-    color: #eef6ff;
+    color: #eef3fa;
     font-family: "Segoe UI", Arial, sans-serif;
     overflow-x: hidden;
-}
-
-a {
-    text-decoration: none;
-    color: inherit;
 }
 
 button,
@@ -34,6 +31,11 @@ button {
     cursor: pointer;
 }
 
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
 
 /* =========================================================
    ENTRY SCREEN
@@ -44,32 +46,149 @@ button {
     inset: 0;
     z-index: 9999;
 
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+    width: 100%;
+    min-height: 100vh;
 
-    background: #02050b;
+    background:
+        radial-gradient(
+            circle at 22% 50%,
+            rgba(48, 91, 155, 0.10),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 78% 50%,
+            rgba(48, 91, 155, 0.06),
+            transparent 32%
+        ),
+        #02050b;
 
     overflow: hidden;
 }
 
+
+/* =========================================================
+   BACKGROUND GRID
+========================================================= */
+
 .entry-background {
     position: absolute;
     inset: 0;
+    z-index: 0;
+    pointer-events: none;
 
     background:
         linear-gradient(
-            rgba(20, 120, 230, 0.04) 1px,
+            rgba(91, 126, 170, 0.045) 1px,
             transparent 1px
         ),
         linear-gradient(
             90deg,
-            rgba(20, 120, 230, 0.04) 1px,
+            rgba(91, 126, 170, 0.045) 1px,
             transparent 1px
         );
 
-    background-size: 55px 55px;
+    background-size: 52px 52px;
+}
 
-    pointer-events: none;
+
+/* subtle center glow */
+
+.grid-glow {
+    position: absolute;
+    inset: 0;
+
+    background:
+        radial-gradient(
+            circle at 25% 48%,
+            rgba(50, 100, 175, 0.12),
+            transparent 23%
+        ),
+        radial-gradient(
+            circle at 76% 45%,
+            rgba(50, 100, 175, 0.06),
+            transparent 27%
+        );
+}
+
+
+/* =========================================================
+   CIRCUIT DECORATION
+========================================================= */
+
+.circuit {
+    position: absolute;
+    opacity: 0.22;
+}
+
+.circuit-a {
+    top: 8%;
+    left: 4%;
+    width: 150px;
+    height: 1px;
+    background: #315f9f;
+}
+
+.circuit-b {
+    top: 8%;
+    left: 4%;
+    width: 1px;
+    height: 100px;
+    background: #315f9f;
+}
+
+.circuit-c {
+    right: 4%;
+    bottom: 10%;
+    width: 150px;
+    height: 1px;
+    background: #315f9f;
+}
+
+.circuit-d {
+    right: 4%;
+    bottom: 10%;
+    width: 1px;
+    height: 100px;
+    background: #315f9f;
+}
+
+.scan-line {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: -5%;
+    height: 1px;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            rgba(70, 120, 190, 0.22),
+            transparent
+        );
+
+    animation: scanLine 8s linear infinite;
+}
+
+
+/* =========================================================
+   MAIN ENTRY LAYOUT
+========================================================= */
+
+.entry-layout {
+    position: relative;
+    z-index: 2;
+
+    width: min(1400px, 92vw);
+    min-height: 100vh;
+
+    margin: 0 auto;
+
+    display: grid;
+    grid-template-columns: 0.95fr 1.05fr;
+
+    align-items: center;
+    gap: 70px;
 }
 
 
@@ -77,210 +196,403 @@ button {
    LEFT — HEERIX
 ========================================================= */
 
-.entry-left {
-    position: relative;
-    z-index: 2;
-
+.entry-visual {
     display: flex;
-    flex-direction: column;
-
-    justify-content: center;
     align-items: center;
+    justify-content: center;
 
-    text-align: center;
-
-    border-right:
-        1px solid
-        rgba(35, 135, 255, 0.25);
-
-    padding: 50px;
+    min-height: 100vh;
 }
 
 
-/* Larger orbit */
+/* =========================================================
+   HEERIX STAGE
+========================================================= */
 
-.heerix-orbit {
+.heerix-stage {
     position: relative;
 
-    width: 350px;
-    height: 350px;
+    width: 450px;
+    height: 450px;
 
     display: flex;
-
-    justify-content: center;
     align-items: center;
+    justify-content: center;
 }
 
 
-/* Orbit */
+/* =========================================================
+   HEERIX AURA
+========================================================= */
 
-.orbit-ring {
+.heerix-aura {
     position: absolute;
 
-    width: 100%;
-    height: 100%;
-
-    border:
-        1px solid
-        rgba(25, 135, 255, 0.45);
+    width: 270px;
+    height: 270px;
 
     border-radius: 50%;
 
-    box-shadow:
-        0 0 40px
-        rgba(20, 130, 255, 0.15),
+    background:
+        radial-gradient(
+            circle,
+            rgba(63, 113, 185, 0.20),
+            rgba(63, 113, 185, 0.04) 48%,
+            transparent 72%
+        );
 
-        inset 0 0 40px
-        rgba(20, 130, 255, 0.08);
+    filter: blur(12px);
 
-    animation:
-        rotateRing
-        15s linear infinite;
+    animation: auraPulse 4s ease-in-out infinite;
 }
 
 
-/* Heerix */
+/* =========================================================
+   LARGE ORBIT RINGS
+========================================================= */
 
-.entry-heerix {
+.heerix-ring {
+    position: absolute;
+
+    border: 1px solid
+        rgba(66, 112, 180, 0.28);
+
+    border-radius: 50%;
+
+    pointer-events: none;
+}
+
+.ring-one {
+    width: 390px;
+    height: 390px;
+
+    animation:
+        ringRotate 18s linear infinite;
+}
+
+.ring-two {
+    width: 330px;
+    height: 330px;
+
+    border-color:
+        rgba(92, 130, 185, 0.17);
+
+    animation:
+        ringRotateReverse 14s linear infinite;
+}
+
+
+/* =========================================================
+   ORBITAL ELLIPSES
+========================================================= */
+
+.orbit {
+    position: absolute;
+
+    width: 410px;
+    height: 170px;
+
+    border:
+        1px solid
+        rgba(57, 105, 173, 0.25);
+
+    border-radius: 50%;
+
+    pointer-events: none;
+}
+
+.orbit-one {
+    transform: rotate(28deg);
+
+    animation:
+        orbitSpin 16s linear infinite;
+}
+
+.orbit-two {
+    width: 380px;
+    height: 145px;
+
+    transform: rotate(-38deg);
+
+    border-color:
+        rgba(76, 119, 180, 0.16);
+
+    animation:
+        orbitSpinReverse 20s linear infinite;
+}
+
+
+/* =========================================================
+   HEERIX IMAGE
+========================================================= */
+
+.heerix-wrap {
     position: relative;
 
-    z-index: 2;
+    z-index: 5;
 
-    width: 215px;
-    height: 215px;
+    width: 250px;
+    height: 250px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    animation:
+        heerixEntrance 1.3s
+        cubic-bezier(.2,.8,.2,1)
+        both,
+        heerixFloat 4s
+        ease-in-out
+        1.4s infinite;
+}
+
+
+.entry-heerix {
+    width: 225px;
+    height: 225px;
 
     object-fit: contain;
 
     filter:
         drop-shadow(
-            0 0 12px
-            rgba(20, 135, 255, 0.7)
+            0 0 16px
+            rgba(93, 142, 211, 0.55)
         );
 
-    animation:
-        heerixFloat
-        4s ease-in-out infinite;
+    user-select: none;
 }
 
 
 /* =========================================================
-   HEERIX INTRODUCTION
+   EYE FLICKER
 ========================================================= */
 
-.system-label {
-    color: #43aaff;
+.eye-glow {
+    position: absolute;
 
-    font-size: 12px;
+    width: 19px;
+    height: 28px;
 
-    letter-spacing: 3px;
-}
-
-.heerix-introduction h1 {
-    font-size: 38px;
-
-    margin-top: 22px;
-    margin-bottom: 8px;
-}
-
-.heerix-introduction p {
-    color: #cbd8e7;
-
-    font-size: 21px;
-
-    margin-bottom: 8px;
-}
-
-.heerix-introduction small {
-    color: #71859d;
-}
-
-
-/* =========================================================
-   RIGHT — ACCESS
-========================================================= */
-
-.entry-right {
-    position: relative;
-
-    z-index: 2;
-
-    display: flex;
-
-    justify-content: center;
-    align-items: center;
-
-    padding: 50px;
-}
-
-
-/* Access area */
-
-.access-card {
-    width: min(530px, 90%);
-
-    padding: 55px;
-
-    text-align: center;
+    border-radius: 50%;
 
     background:
-        linear-gradient(
-            145deg,
-            rgba(6, 20, 38, 0.96),
-            rgba(2, 8, 16, 0.98)
-        );
+        rgba(115, 165, 225, 0.65);
+
+    filter: blur(8px);
+
+    opacity: 0;
+
+    pointer-events: none;
+
+    animation:
+        eyeFlicker 5s
+        ease-in-out
+        2s infinite;
+}
+
+.eye-glow-left {
+    left: 91px;
+    top: 87px;
+}
+
+.eye-glow-right {
+    right: 91px;
+    top: 87px;
+
+    animation-delay: 2.08s;
+}
+
+
+/* =========================================================
+   PLATFORM
+========================================================= */
+
+.hero-platform {
+    position: absolute;
+
+    bottom: 20px;
+
+    width: 280px;
+    height: 28px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hero-platform span {
+    position: absolute;
 
     border:
         1px solid
-        #167fe8;
+        rgba(63, 112, 181, 0.25);
+
+    border-radius: 50%;
+}
+
+.hero-platform span:nth-child(1) {
+    width: 280px;
+    height: 35px;
+}
+
+.hero-platform span:nth-child(2) {
+    width: 210px;
+    height: 24px;
+}
+
+.hero-platform span:nth-child(3) {
+    width: 130px;
+    height: 14px;
+
+    background:
+        rgba(53, 96, 155, 0.08);
 
     box-shadow:
-        0 0 50px
-        rgba(0, 110, 255, 0.13);
+        0 0 25px
+        rgba(50, 100, 175, 0.15);
 }
 
 
 /* =========================================================
-   ACCESS CONTENT
+   RIGHT — CONTENT
 ========================================================= */
 
-.access-icon {
-    color: #48acff;
+.entry-content {
+    display: flex;
 
-    font-size: 35px;
+    flex-direction: column;
 
-    margin-bottom: 18px;
+    justify-content: center;
+
+    align-items: flex-start;
+
+    min-height: 100vh;
+
+    padding-right: 30px;
 }
 
-.access-label {
-    color: #4baeff;
 
-    font-size: 12px;
+/* =========================================================
+   GREETING
+========================================================= */
 
-    letter-spacing: 3px;
+.heerix-introduction {
+    animation:
+        contentReveal
+        1s
+        cubic-bezier(.2,.8,.2,1)
+        0.45s
+        both;
 }
 
-.access-card h2 {
-    font-size: 42px;
+.heerix-introduction h1 {
+    margin: 0;
 
-    margin: 15px 0;
+    font-size:
+        clamp(48px, 5vw, 78px);
+
+    line-height: 1;
+
+    font-weight: 700;
+
+    letter-spacing: -3px;
+
+    color: #f1f5fa;
 }
 
-.access-card p {
-    color: #92a5bb;
-
-    margin-bottom: 28px;
+.heerix-introduction h1 span {
+    color: #4d7fca;
 }
 
-.access-card label {
+.heerix-introduction p {
+    margin-top: 16px;
+
+    color: #aab5c2;
+
+    font-size: 23px;
+
+    letter-spacing: 0.2px;
+}
+
+
+/* =========================================================
+   ACCESS AREA
+========================================================= */
+
+.access-area {
+    width: min(520px, 100%);
+
+    margin-top: 48px;
+
+    animation:
+        contentReveal
+        1s
+        cubic-bezier(.2,.8,.2,1)
+        0.55s
+        both;
+}
+
+
+/* =========================================================
+   ACCESS HEADING
+========================================================= */
+
+.access-heading h2 {
+    margin: 0;
+
+    color: #eef3f9;
+
+    font-size: 28px;
+
+    font-weight: 650;
+
+    letter-spacing: 1px;
+}
+
+.access-heading h2 em {
+    color: #4d7fca;
+
+    font-style: normal;
+}
+
+.heading-line {
     display: block;
 
-    color: #58b4ff;
+    width: 100%;
 
-    font-size: 12px;
+    height: 1px;
 
-    letter-spacing: 2px;
+    margin:
+        15px 0 12px;
 
-    margin-bottom: 9px;
+    background:
+        rgba(78, 124, 185, 0.18);
+
+    overflow: hidden;
+}
+
+.heading-line i {
+    display: block;
+
+    width: 90px;
+
+    height: 1px;
+
+    background:
+        #4778be;
+
+    animation:
+        lineGrow 1s ease
+        1.2s both;
+}
+
+.access-heading p {
+    margin-bottom: 22px;
+
+    color: #7f8d9d;
+
+    font-size: 14px;
 }
 
 
@@ -288,151 +600,281 @@ button {
    GLASS INPUT
 ========================================================= */
 
-.access-card input {
+.glass-input-wrap {
+    position: relative;
+
     width: 100%;
 
-    padding: 17px;
+    height: 58px;
+
+    display: flex;
+
+    align-items: center;
 
     background:
-        rgba(5, 15, 28, 0.55);
+        rgba(12, 23, 38, 0.48);
 
     border:
         1px solid
-        rgba(130, 170, 210, 0.35);
+        rgba(139, 164, 195, 0.28);
 
-    border-radius: 7px;
-
-    color: white;
-
-    outline: none;
-
-    margin-bottom: 15px;
+    border-radius: 9px;
 
     backdrop-filter:
-        blur(12px);
+        blur(16px);
 
     -webkit-backdrop-filter:
-        blur(12px);
-
-    transition:
-        0.3s;
-}
-
-.access-card input::placeholder {
-    color: #71859d;
-}
-
-.access-card input:focus {
-    border-color:
-        rgba(61, 167, 255, 0.85);
-
-    background:
-        rgba(8, 22, 40, 0.68);
+        blur(16px);
 
     box-shadow:
-        0 0 20px
-        rgba(20, 130, 255, 0.18);
+        inset 0 1px 0
+        rgba(255, 255, 255, 0.045),
+
+        0 12px 35px
+        rgba(0, 0, 0, 0.15);
+
+    transition:
+        border-color 0.3s ease,
+        background 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+.glass-input-wrap:focus-within {
+    border-color:
+        rgba(77, 127, 202, 0.72);
+
+    background:
+        rgba(16, 30, 48, 0.58);
+
+    box-shadow:
+        0 0 0 1px
+        rgba(77, 127, 202, 0.08),
+
+        0 0 30px
+        rgba(48, 91, 155, 0.12);
+}
+
+.glass-lock {
+    position: absolute;
+
+    left: 18px;
+
+    color: #65788f;
+
+    font-size: 17px;
+
+    pointer-events: none;
+}
+
+.glass-input-wrap input {
+    width: 100%;
+    height: 100%;
+
+    padding:
+        0 52px 0 48px;
+
+    border: none;
+    outline: none;
+
+    background: transparent;
+
+    color: #edf4fb;
+
+    font-size: 15px;
+}
+
+.glass-input-wrap input::placeholder {
+    color: #64758a;
+}
+
+.glass-arrow {
+    position: absolute;
+
+    right: 19px;
+
+    color: #6f8fb8;
+
+    font-size: 20px;
+
+    pointer-events: none;
 }
 
 
 /* =========================================================
-   SLIGHTLY GLASSY UNLOCK BUTTON
+   GLASSY UNLOCK BUTTON
 ========================================================= */
 
-.access-card button {
+.unlock-button {
     width: 100%;
 
-    padding: 16px;
+    height: 56px;
+
+    margin-top: 13px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 15px;
 
     border:
         1px solid
-        rgba(110, 165, 220, 0.55);
+        rgba(110, 150, 205, 0.48);
 
-    border-radius: 7px;
+    border-radius: 9px;
 
     background:
         linear-gradient(
             135deg,
-            rgba(35, 125, 230, 0.78),
-            rgba(7, 60, 126, 0.70)
+            rgba(65, 110, 177, 0.74),
+            rgba(40, 72, 117, 0.64)
         );
 
-    color: white;
+    color: #f1f5fa;
+
+    font-size: 12px;
+
+    font-weight: 650;
 
     letter-spacing: 2px;
 
     backdrop-filter:
-        blur(10px);
+        blur(12px);
 
     -webkit-backdrop-filter:
-        blur(10px);
+        blur(12px);
 
     box-shadow:
         inset 0 1px 0
-        rgba(255, 255, 255, 0.12),
+        rgba(255, 255, 255, 0.10),
 
-        0 8px 25px
-        rgba(0, 90, 180, 0.15);
+        0 10px 30px
+        rgba(18, 42, 75, 0.18);
 
     transition:
-        0.3s;
+        transform 0.25s ease,
+        background 0.25s ease,
+        border-color 0.25s ease,
+        box-shadow 0.25s ease;
 }
 
-.access-card button:hover {
+.unlock-button b {
+    font-size: 20px;
+
+    font-weight: 400;
+
+    color: #a9c2df;
+
+    transition:
+        transform 0.25s ease;
+}
+
+.unlock-button:hover {
     transform:
         translateY(-2px);
 
+    border-color:
+        rgba(137, 171, 215, 0.68);
+
     background:
         linear-gradient(
             135deg,
-            rgba(50, 145, 240, 0.85),
-            rgba(9, 72, 145, 0.78)
+            rgba(73, 122, 195, 0.82),
+            rgba(45, 81, 130, 0.72)
         );
 
     box-shadow:
         inset 0 1px 0
-        rgba(255, 255, 255, 0.15),
+        rgba(255, 255, 255, 0.14),
 
-        0 0 30px
-        rgba(20, 130, 255, 0.28);
+        0 14px 35px
+        rgba(31, 69, 116, 0.25);
+}
+
+.unlock-button:hover b {
+    transform:
+        translateX(5px);
+}
+
+.unlock-button:active {
+    transform:
+        translateY(0)
+        scale(0.99);
 }
 
 
 /* =========================================================
-   ACCESS ERROR
+   ERROR
 ========================================================= */
 
 .access-error {
-    height: 22px;
+    min-height: 22px;
 
-    color: #ff6972;
+    margin-top: 10px;
 
-    margin-top: 14px;
-}
+    color: #df7078;
 
-.security-note {
-    display: block;
-
-    color: #52718f;
-
-    font-size: 10px;
-
-    letter-spacing: 2px;
-
-    margin-top: 16px;
+    font-size: 12px;
 }
 
 
 /* =========================================================
-   PORTFOLIO
+   FOOTER
+========================================================= */
+
+.access-footer {
+    position: absolute;
+
+    z-index: 4;
+
+    left: 50%;
+
+    bottom: 28px;
+
+    transform:
+        translateX(-50%);
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    color: #657487;
+
+    font-size: 10px;
+
+    letter-spacing: 4px;
+
+    white-space: nowrap;
+}
+
+.access-footer i {
+    color: #3f6798;
+
+    font-style: normal;
+}
+
+
+/* =========================================================
+   HIDDEN
 ========================================================= */
 
 .hidden {
     display: none !important;
 }
 
+
+/* =========================================================
+   MAIN PORTFOLIO
+========================================================= */
+
 .portfolio {
     min-height: 100vh;
+
+    background: #02050b;
 }
 
 
@@ -460,13 +902,17 @@ button {
     padding: 0 20px;
 
     background:
-        rgba(2, 8, 17, 0.88);
+        rgba(3, 10, 19, 0.88);
 
-    backdrop-filter: blur(18px);
+    backdrop-filter:
+        blur(18px);
+
+    -webkit-backdrop-filter:
+        blur(18px);
 
     border:
         1px solid
-        rgba(35, 135, 255, 0.3);
+        rgba(63, 110, 176, 0.28);
 }
 
 .brand {
@@ -488,14 +934,14 @@ button {
     filter:
         drop-shadow(
             0 0 8px
-            #1685ff
+            rgba(60, 110, 180, 0.7)
         );
 }
 
 .brand strong {
     display: block;
 
-    color: #45aaff;
+    color: #5b88c5;
 
     letter-spacing: 1px;
 }
@@ -503,7 +949,7 @@ button {
 .brand small {
     display: block;
 
-    color: #6f91b1;
+    color: #718095;
 
     font-size: 8px;
 
@@ -523,7 +969,7 @@ button {
 .navbar nav a {
     position: relative;
 
-    color: #d8e4f1;
+    color: #d3dce7;
 
     font-size: 12px;
 
@@ -533,7 +979,7 @@ button {
 }
 
 .navbar nav a:hover {
-    color: #48adff;
+    color: #6c95cb;
 }
 
 .navbar nav a::after {
@@ -543,31 +989,34 @@ button {
 
     left: 0;
     right: 0;
-
     bottom: 17px;
 
     height: 2px;
 
-    background: #1685ff;
+    background: #4778be;
 
-    transform: scaleX(0);
+    transform:
+        scaleX(0);
 
     transition: 0.25s;
 }
 
 .navbar nav a:hover::after,
 .navbar nav a.active::after {
-    transform: scaleX(1);
+    transform:
+        scaleX(1);
 }
 
 .connect-button {
-    padding: 13px 20px;
+    padding:
+        13px 20px;
 
     border:
         1px solid
-        #1685ff;
+        #416fa9;
 
-    color: #51afff;
+    color:
+        #7095c5;
 
     font-size: 12px;
 
@@ -578,11 +1027,7 @@ button {
 
 .connect-button:hover {
     background:
-        rgba(22, 133, 255, 0.1);
-
-    box-shadow:
-        0 0 20px
-        rgba(22, 133, 255, 0.2);
+        rgba(65, 111, 169, 0.10);
 }
 
 
@@ -597,21 +1042,20 @@ button {
 
     display: grid;
 
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns:
+        1fr 1fr;
 
     align-items: center;
 
     padding:
-        130px
-        6vw
-        70px;
+        130px 6vw 70px;
 
     overflow: hidden;
 
     background:
         radial-gradient(
             circle at 72% 45%,
-            rgba(0, 100, 230, 0.14),
+            rgba(49, 95, 168, 0.13),
             transparent 35%
         );
 }
@@ -624,13 +1068,14 @@ button {
     background-image:
         radial-gradient(
             circle,
-            rgba(55, 155, 255, 0.7) 1px,
+            rgba(110, 140, 180, 0.5) 1px,
             transparent 1.5px
         );
 
-    background-size: 75px 75px;
+    background-size:
+        75px 75px;
 
-    opacity: 0.11;
+    opacity: 0.09;
 
     animation:
         backgroundMove
@@ -646,7 +1091,7 @@ button {
 }
 
 .hero-kicker {
-    color: #42aaff;
+    color: #5d82b7;
 
     font-size: 14px;
 
@@ -655,11 +1100,7 @@ button {
 
 .hero-content h1 {
     font-size:
-        clamp(
-            65px,
-            8vw,
-            115px
-        );
+        clamp(65px, 8vw, 115px);
 
     line-height: 0.95;
 
@@ -671,16 +1112,17 @@ button {
         linear-gradient(
             180deg,
             #ffffff,
-            #b5d5f7
+            #b7c0cb
         );
 
-    -webkit-background-clip: text;
+    -webkit-background-clip:
+        text;
 
     color: transparent;
 }
 
 .hero-content h2 {
-    color: #258eff;
+    color: #527bb3;
 
     font-size: 23px;
 
@@ -690,7 +1132,7 @@ button {
 }
 
 .hero-content p {
-    color: #bac8d8;
+    color: #aeb8c4;
 
     font-size: 17px;
 
@@ -731,10 +1173,10 @@ button {
 
     border:
         1px solid
-        rgba(30, 130, 240, 0.4);
+        rgba(71, 120, 190, 0.30);
 
     background:
-        rgba(3, 12, 23, 0.75);
+        rgba(9, 15, 23, 0.75);
 
     transition:
         transform 0.3s,
@@ -743,16 +1185,14 @@ button {
 }
 
 .home-card:hover {
-    transform: translateY(-5px);
+    transform:
+        translateY(-5px);
 
-    border-color: #1685ff;
+    border-color:
+        #4778be;
 
     background:
-        rgba(10, 35, 65, 0.8);
-
-    box-shadow:
-        0 10px 35px
-        rgba(0, 110, 255, 0.13);
+        rgba(20, 31, 46, 0.8);
 }
 
 .home-card span:nth-child(2) {
@@ -764,7 +1204,7 @@ button {
 }
 
 .card-number {
-    color: #318fe5;
+    color: #587dad;
 
     font-size: 10px;
 
@@ -777,14 +1217,14 @@ button {
     right: 16px;
     bottom: 14px;
 
-    color: #3fa8ff;
+    color: #6489bc;
 
     font-size: 18px;
 }
 
 
 /* =========================================================
-   HERO PHOTO
+   HOME PHOTO
 ========================================================= */
 
 .hero-visual {
@@ -811,7 +1251,8 @@ button {
 
     object-fit: cover;
 
-    object-position: center top;
+    object-position:
+        center top;
 
     border-radius: 5px;
 
@@ -837,14 +1278,14 @@ button {
 
     border:
         1px solid
-        #1685ff;
+        #315fa8;
 
     box-shadow:
         0 0 55px
-        rgba(22, 133, 255, 0.3),
+        rgba(49, 95, 168, 0.25),
 
         inset 0 0 45px
-        rgba(22, 133, 255, 0.08);
+        rgba(49, 95, 168, 0.08);
 
     animation:
         rotateRing
@@ -861,7 +1302,7 @@ button {
 
     border:
         1px solid
-        rgba(70, 170, 255, 0.25);
+        rgba(100, 135, 180, 0.25);
 
     animation:
         rotateRingReverse
@@ -889,7 +1330,7 @@ button {
 
     border: none;
 
-    color: #42aaff;
+    color: #6485ae;
 
     letter-spacing: 2px;
 
@@ -926,7 +1367,7 @@ button {
 
     border-top:
         1px solid
-        rgba(30, 130, 240, 0.15);
+        rgba(71, 120, 190, 0.15);
 
     background:
         linear-gradient(
@@ -937,7 +1378,7 @@ button {
 }
 
 .placeholder-section span {
-    color: #278be3;
+    color: #5579a8;
 
     letter-spacing: 3px;
 }
@@ -949,7 +1390,7 @@ button {
 }
 
 .placeholder-section p {
-    color: #7f93aa;
+    color: #7f8995;
 }
 
 
@@ -974,14 +1415,7 @@ button {
 
     border-top:
         1px solid
-        rgba(30, 130, 240, 0.25);
-
-    background:
-        radial-gradient(
-            circle at 85% 50%,
-            rgba(0, 100, 230, 0.12),
-            transparent 35%
-        );
+        rgba(71, 120, 190, 0.25);
 }
 
 .contact-intro h2 {
@@ -992,7 +1426,7 @@ button {
 }
 
 .contact-intro p {
-    color: #9eafc3;
+    color: #9eabb8;
 
     line-height: 1.8;
 
@@ -1018,22 +1452,11 @@ button {
 
     border:
         1px solid
-        #164d83;
+        #294866;
 
     color: white;
 
     outline: none;
-
-    transition: 0.25s;
-}
-
-.contact-form input:focus,
-.contact-form textarea:focus {
-    border-color: #1685ff;
-
-    box-shadow:
-        0 0 15px
-        rgba(22, 133, 255, 0.12);
 }
 
 .contact-form textarea {
@@ -1053,29 +1476,18 @@ button {
 
     border:
         1px solid
-        #1685ff;
+        #4778be;
 
     background:
         linear-gradient(
             180deg,
-            #1173e6,
-            #073c7e
+            #315f9f,
+            #234875
         );
 
     color: white;
 
     letter-spacing: 1px;
-
-    transition: 0.25s;
-}
-
-.send-button:hover {
-    transform:
-        translateY(-2px);
-
-    box-shadow:
-        0 0 30px
-        rgba(20, 130, 255, 0.3);
 }
 
 
@@ -1102,7 +1514,7 @@ button {
 
     border:
         1px solid
-        #1685ff;
+        #4778be;
 
     background:
         rgba(3, 11, 22, 0.94);
@@ -1111,7 +1523,7 @@ button {
 
     box-shadow:
         0 0 25px
-        rgba(20, 130, 255, 0.2);
+        rgba(49, 95, 168, 0.2);
 }
 
 .floating-heerix img {
@@ -1119,12 +1531,6 @@ button {
     height: 48px;
 
     object-fit: contain;
-
-    filter:
-        drop-shadow(
-            0 0 9px
-            #1685ff
-        );
 
     animation:
         heerixFloat
@@ -1139,11 +1545,11 @@ button {
 }
 
 .floating-heerix strong {
-    color: #47acff;
+    color: #6b91c4;
 }
 
 .floating-heerix small {
-    color: #b6c8da;
+    color: #a8b3bf;
 
     margin-top: 3px;
 }
@@ -1170,11 +1576,11 @@ button {
 
     border:
         1px solid
-        #1685ff;
+        #4778be;
 
     box-shadow:
         0 0 30px
-        rgba(20, 130, 255, 0.2);
+        rgba(49, 95, 168, 0.2);
 
     display: none;
 }
@@ -1192,7 +1598,7 @@ button {
 
     justify-content: space-between;
 
-    color: #45aaff;
+    color: #6c90c0;
 }
 
 .chat-header button {
@@ -1206,7 +1612,7 @@ button {
 }
 
 .heerix-chat p {
-    color: #c8d5e3;
+    color: #c8d0d9;
 
     line-height: 1.6;
 
@@ -1220,10 +1626,10 @@ button {
 
     border:
         1px solid
-        #1685ff;
+        #4778be;
 
     background:
-        #073c7e;
+        #263f64;
 
     color: white;
 }
@@ -1232,6 +1638,23 @@ button {
 /* =========================================================
    ANIMATIONS
 ========================================================= */
+
+@keyframes heerixEntrance {
+
+    from {
+        opacity: 0;
+        transform:
+            scale(0.72)
+            translateY(25px);
+    }
+
+    to {
+        opacity: 1;
+        transform:
+            scale(1)
+            translateY(0);
+    }
+}
 
 @keyframes heerixFloat {
 
@@ -1243,7 +1666,142 @@ button {
 
     50% {
         transform:
-            translateY(-12px);
+            translateY(-13px);
+    }
+}
+
+@keyframes auraPulse {
+
+    0%,
+    100% {
+        opacity: 0.55;
+        transform: scale(0.95);
+    }
+
+    50% {
+        opacity: 0.9;
+        transform: scale(1.08);
+    }
+}
+
+@keyframes ringRotate {
+
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes ringRotateReverse {
+
+    from {
+        transform: rotate(360deg);
+    }
+
+    to {
+        transform: rotate(0deg);
+    }
+}
+
+@keyframes orbitSpin {
+
+    from {
+        transform:
+            rotate(28deg)
+            rotate(0deg);
+    }
+
+    to {
+        transform:
+            rotate(28deg)
+            rotate(360deg);
+    }
+}
+
+@keyframes orbitSpinReverse {
+
+    from {
+        transform:
+            rotate(-38deg)
+            rotate(360deg);
+    }
+
+    to {
+        transform:
+            rotate(-38deg)
+            rotate(0deg);
+    }
+}
+
+@keyframes eyeFlicker {
+
+    0%,
+    43%,
+    47%,
+    100% {
+        opacity: 0;
+    }
+
+    44%,
+    45%,
+    46% {
+        opacity: 0.8;
+    }
+}
+
+@keyframes contentReveal {
+
+    from {
+        opacity: 0;
+
+        transform:
+            translateX(35px);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateX(0);
+    }
+}
+
+@keyframes lineGrow {
+
+    from {
+        width: 0;
+    }
+
+    to {
+        width: 90px;
+    }
+}
+
+@keyframes scanLine {
+
+    from {
+        transform:
+            translateY(-10vh);
+    }
+
+    to {
+        transform:
+            translateY(110vh);
+    }
+}
+
+@keyframes backgroundMove {
+
+    from {
+        background-position: 0 0;
+    }
+
+    to {
+        background-position:
+            150px 100px;
     }
 }
 
@@ -1270,19 +1828,6 @@ button {
     to {
         transform:
             rotate(0deg);
-    }
-}
-
-@keyframes backgroundMove {
-
-    from {
-        background-position:
-            0 0;
-    }
-
-    to {
-        background-position:
-            150px 100px;
     }
 }
 
@@ -1316,10 +1861,28 @@ button {
    TABLET
 ========================================================= */
 
-@media (max-width: 1100px) {
+@media (max-width: 1000px) {
+
+    .entry-layout {
+        width: 94vw;
+
+        gap: 30px;
+    }
+
+    .heerix-stage {
+        transform: scale(0.88);
+    }
+
+    .heerix-introduction h1 {
+        font-size: 48px;
+    }
+
+    .access-area {
+        margin-top: 35px;
+    }
 
     .navbar nav {
-        gap: 14px;
+        gap: 13px;
     }
 
     .navbar nav a {
@@ -1336,44 +1899,80 @@ button {
    MOBILE
 ========================================================= */
 
-@media (max-width: 850px) {
+@media (max-width: 760px) {
 
     .entry-screen {
-        grid-template-columns: 1fr;
+        overflow-y: auto;
     }
 
-    .entry-left {
-        min-height: 50vh;
+    .entry-layout {
+        width: 100%;
+        min-height: 100vh;
 
-        border-right: none;
+        display: flex;
 
-        border-bottom:
-            1px solid
-            rgba(35, 135, 255, 0.25);
+        flex-direction: column;
+
+        justify-content: center;
+
+        gap: 0;
+
+        padding:
+            35px 24px 85px;
     }
 
-    .entry-right {
-        min-height: 50vh;
+    .entry-visual {
+        min-height: auto;
 
-        padding: 25px;
+        height: 42vh;
+
+        max-height: 420px;
     }
 
-    .heerix-orbit {
-        width: 230px;
-        height: 230px;
+    .heerix-stage {
+        transform: scale(0.72);
     }
 
-    .entry-heerix {
-        width: 140px;
-        height: 140px;
+    .entry-content {
+        min-height: auto;
+
+        width: 100%;
+
+        padding: 0;
+
+        align-items: center;
+
+        text-align: center;
     }
 
-    .access-card {
-        padding: 35px 25px;
+    .heerix-introduction h1 {
+        font-size: 43px;
+
+        letter-spacing: -2px;
     }
 
-    .access-card h2 {
-        font-size: 31px;
+    .heerix-introduction p {
+        font-size: 18px;
+    }
+
+    .access-area {
+        width: min(500px, 100%);
+
+        margin-top: 30px;
+
+        text-align: left;
+    }
+
+    .access-heading h2 {
+        font-size: 24px;
+    }
+
+    .access-footer {
+        bottom: 18px;
+
+        font-size: 8px;
+
+        letter-spacing: 3px;
     }
 
     .navbar {
@@ -1385,10 +1984,7 @@ button {
         height: 65px;
     }
 
-    .navbar nav {
-        display: none;
-    }
-
+    .navbar nav,
     .connect-button {
         display: none;
     }
@@ -1462,7 +2058,54 @@ button {
 }
 
 
+/* =========================================================
+   SMALL PHONE
+========================================================= */
+
 @media (max-width: 500px) {
+
+    .entry-layout {
+        padding:
+            25px 18px 70px;
+    }
+
+    .entry-visual {
+        height: 38vh;
+    }
+
+    .heerix-stage {
+        transform: scale(0.60);
+    }
+
+    .heerix-introduction h1 {
+        font-size: 36px;
+    }
+
+    .heerix-introduction p {
+        font-size: 16px;
+    }
+
+    .access-area {
+        margin-top: 24px;
+    }
+
+    .access-heading h2 {
+        font-size: 21px;
+    }
+
+    .glass-input-wrap {
+        height: 54px;
+    }
+
+    .unlock-button {
+        height: 53px;
+    }
+
+    .access-footer {
+        gap: 7px;
+
+        letter-spacing: 2px;
+    }
 
     .home-cards {
         grid-template-columns: 1fr;
