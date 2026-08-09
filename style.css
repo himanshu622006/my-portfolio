@@ -2174,7 +2174,7 @@ a {
     pointer-events: none;
 
     /* Smoothly brings Heerix from the left side to center */
-    animation: heerixVisualToCenter 3.6s cubic-bezier(.22,.75,.18,1) forwards;
+    animation: heerixVisualToCenter 2.5s cubic-bezier(.22,.75,.18,1) forwards;
 }
 
 
@@ -2192,7 +2192,7 @@ a {
 
     animation:
         heerixStageFocus
-        3.6s
+        2.5s
         cubic-bezier(.2,.8,.2,1)
         forwards;
 }
@@ -2249,7 +2249,7 @@ a {
 .entry-screen.unlocking .orbit-one {
     animation:
         orbitUnlockForward
-        3.6s
+        2.5s
         cubic-bezier(.2,.8,.2,1)
         forwards;
 }
@@ -2258,7 +2258,7 @@ a {
 .entry-screen.unlocking .orbit-two {
     animation:
         orbitUnlockReverse
-        3.6s
+        2.5s
         cubic-bezier(.2,.8,.2,1)
         forwards;
 }
