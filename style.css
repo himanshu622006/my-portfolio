@@ -2169,6 +2169,9 @@ a {
 
     z-index: 9999;
 
+    left: auto;
+    top: auto;
+
     transition:
         left 2.5s cubic-bezier(.22,.75,.18,1),
         top 2.5s cubic-bezier(.22,.75,.18,1),
@@ -2332,7 +2335,7 @@ a {
     }
 
     .entry-screen.unlocking .heerix-stage {
-        transform: scale(0.72);
+        transform: none;
     }
 
  
@@ -2360,7 +2363,7 @@ a {
 @media (max-width: 500px) {
 
     .entry-screen.unlocking .heerix-stage {
-        transform: scale(0.60);
+        transform: scale(none);
     }
 
     @keyframes heerixStageFocus {
