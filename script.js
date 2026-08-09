@@ -4,20 +4,37 @@
 
 const ACCESS_CODE = "9868096233";
 
+
 /* =========================================================
    ELEMENTS
 ========================================================= */
 
-const entryScreen = document.getElementById("entryScreen");
-const portfolio = document.getElementById("portfolio");
-const accessCode = document.getElementById("accessCode");
-const unlockButton = document.getElementById("unlockBtn");
-const accessError = document.getElementById("accessError");
+const entryScreen =
+    document.getElementById("entryScreen");
 
-const heerixButton = document.getElementById("heerixButton");
-const heerixChat = document.getElementById("heerixChat");
-const closeChat = document.getElementById("closeChat");
-const contactForm = document.getElementById("contactForm");
+const portfolio =
+    document.getElementById("portfolio");
+
+const accessCode =
+    document.getElementById("accessCode");
+
+const unlockButton =
+    document.getElementById("unlockBtn");
+
+const accessError =
+    document.getElementById("accessError");
+
+const heerixButton =
+    document.getElementById("heerixButton");
+
+const heerixChat =
+    document.getElementById("heerixChat");
+
+const closeChat =
+    document.getElementById("closeChat");
+
+const contactForm =
+    document.getElementById("contactForm");
 
 
 /* =========================================================
@@ -26,19 +43,14 @@ const contactForm = document.getElementById("contactForm");
 
 window.addEventListener("DOMContentLoaded", () => {
 
-    /*
-     * Heerix materializes first.
-     * The access interface becomes active after the intro.
-     */
+    setTimeout(() => {
 
-   setTimeout(() => {
-    entryScreen.classList.add("ready");
-}, 1800);
+        if (entryScreen) {
+            entryScreen.classList.add("ready");
+        }
 
+    }, 1800);
 
-    /*
-     * Focus the access field after the animation.
-     */
 
     setTimeout(() => {
 
@@ -47,10 +59,12 @@ window.addEventListener("DOMContentLoaded", () => {
             !entryScreen.classList.contains("hidden") &&
             accessCode
         ) {
+
             accessCode.focus();
+
         }
 
-   }, 2400);
+    }, 2400);
 
 });
 
@@ -61,28 +75,50 @@ window.addEventListener("DOMContentLoaded", () => {
 
 function unlockPortfolio() {
 
-    if (!accessCode || !entryScreen || !portfolio) {
+    if (
+        !accessCode ||
+        !entryScreen ||
+        !portfolio
+    ) {
         return;
     }
 
-    const enteredCode = accessCode.value.trim();
+
+    /* Prevent double click */
+
+    if (
+        entryScreen.classList.contains(
+            "unlocking"
+        )
+    ) {
+        return;
+    }
+
+
+    const enteredCode =
+        accessCode.value.trim();
 
 
     /* =====================================================
        WRONG PASSWORD
     ===================================================== */
 
-    if (enteredCode !== ACCESS_CODE) {
+    if (
+        enteredCode !== ACCESS_CODE
+    ) {
 
         if (accessError) {
+
             accessError.textContent =
                 "Incorrect access code. Nice try. Try again.";
+
         }
 
 
         /* Restart shake animation */
 
-        accessCode.style.animation = "none";
+        accessCode.style.animation =
+            "none";
 
         void accessCode.offsetWidth;
 
@@ -104,86 +140,185 @@ function unlockPortfolio() {
     }
 
 
-  /* =========================================================
-   CORRECT PASSWORD
-========================================================= */
+    /* =====================================================
+       CORRECT PASSWORD
+       HEERIX → CENTER → HOME
+    ===================================================== */
 
-accessError.textContent = "";
-
-/* Start cinematic unlock */
-entryScreen.classList.add("unlocking");
-
-
-setTimeout(() => {
-
-    entryScreen.classList.add("hidden");
-
-    portfolio.classList.remove("hidden");
-
-    window.scrollTo(0, 0);
-
-    /* Home entrance */
-    portfolio.classList.add("portfolio-enter");
-
-    setTimeout(() => {
-        portfolio.classList.remove("portfolio-enter");
-    }, 1200);
-
-    showWelcomeMessage();
-
-}, 1100);
+    accessError.textContent = "";
 
 
     /*
-     * Give Heerix time to react before
-     * the lock screen disappears.
+     * Find Heerix stage.
+     */
+
+    const stage =
+        document.querySelector(
+            ".heerix-stage"
+        );
+
+
+    /*
+     * Safety fallback.
+     */
+
+    if (!stage) {
+
+        entryScreen.classList.add(
+            "unlocking"
+        );
+
+
+        setTimeout(() => {
+
+            entryScreen.classList.add(
+                "hidden"
+            );
+
+            portfolio.classList.remove(
+                "hidden"
+            );
+
+            window.scrollTo(
+                0,
+                0
+            );
+
+            portfolio.classList.add(
+                "portfolio-enter"
+            );
+
+
+            setTimeout(() => {
+
+                portfolio.classList.remove(
+                    "portfolio-enter"
+                );
+
+            }, 1200);
+
+
+            showWelcomeMessage();
+
+        }, 1700);
+
+
+        return;
+    }
+
+
+    /* =====================================================
+       CALCULATE CENTER POSITION
+    ===================================================== */
+
+    const rect =
+        stage.getBoundingClientRect();
+
+
+    const stageCenterX =
+        rect.left +
+        (rect.width / 2);
+
+
+    const stageCenterY =
+        rect.top +
+        (rect.height / 2);
+
+
+    const screenCenterX =
+        window.innerWidth / 2;
+
+
+    const screenCenterY =
+        window.innerHeight / 2;
+
+
+    const moveX =
+        screenCenterX -
+        stageCenterX;
+
+
+    const moveY =
+        screenCenterY -
+        stageCenterY;
+
+
+    /*
+     * Send movement values
+     * to CSS.
+     */
+
+    entryScreen.style.setProperty(
+        "--move-x",
+        `${moveX}px`
+    );
+
+
+    entryScreen.style.setProperty(
+        "--move-y",
+        `${moveY}px`
+    );
+
+
+    /* =====================================================
+       START CINEMATIC TRANSITION
+    ===================================================== */
+
+    entryScreen.classList.add(
+        "unlocking"
+    );
+
+
+    /*
+     * Wait until Heerix reaches
+     * the center.
      */
 
     setTimeout(() => {
 
-        entryScreen.style.transition =
-            "opacity .9s ease, transform 1s cubic-bezier(.2,.8,.2,1)";
 
-        entryScreen.style.opacity = "0";
+        /* Hide lock screen */
 
-        entryScreen.style.transform =
-            "scale(1.035)";
-
-    }, 500);
+        entryScreen.classList.add(
+            "hidden"
+        );
 
 
-    /*
-     * Show portfolio.
-     */
+        /* Show portfolio */
 
-    setTimeout(() => {
-
-        entryScreen.classList.add("hidden");
-
-        portfolio.classList.remove("hidden");
+        portfolio.classList.remove(
+            "hidden"
+        );
 
 
-        /*
-         * Reset temporary inline styles.
-         */
-
-        entryScreen.style.opacity = "";
-
-        entryScreen.style.transform = "";
-
-        entryScreen.style.transition = "";
+        window.scrollTo(
+            0,
+            0
+        );
 
 
-        window.scrollTo(0, 0);
+        /* Home entrance */
+
+        portfolio.classList.add(
+            "portfolio-enter"
+        );
 
 
-        /*
-         * Heerix welcome message.
-         */
+        setTimeout(() => {
+
+            portfolio.classList.remove(
+                "portfolio-enter"
+            );
+
+        }, 1200);
+
+
+        /* Welcome message */
 
         showWelcomeMessage();
 
-    }, 1450);
+
+    }, 1700);
 
 }
 
@@ -195,7 +330,9 @@ setTimeout(() => {
 function showWelcomeMessage() {
 
     const message =
-        document.createElement("div");
+        document.createElement(
+            "div"
+        );
 
 
     message.className =
@@ -208,19 +345,25 @@ function showWelcomeMessage() {
     `;
 
 
-    document.body.appendChild(message);
+    document.body.appendChild(
+        message
+    );
 
 
     setTimeout(() => {
 
-        message.classList.add("show");
+        message.classList.add(
+            "show"
+        );
 
     }, 50);
 
 
     setTimeout(() => {
 
-        message.classList.remove("show");
+        message.classList.remove(
+            "show"
+        );
 
     }, 4000);
 
@@ -258,7 +401,9 @@ if (accessCode) {
         "keydown",
         (event) => {
 
-            if (event.key === "Enter") {
+            if (
+                event.key === "Enter"
+            ) {
 
                 unlockPortfolio();
 
@@ -274,10 +419,14 @@ if (accessCode) {
    SMOOTH SCROLL
 ========================================================= */
 
-function scrollToSection(sectionId) {
+function scrollToSection(
+    sectionId
+) {
 
     const section =
-        document.getElementById(sectionId);
+        document.getElementById(
+            sectionId
+        );
 
 
     if (!section) {
@@ -302,31 +451,33 @@ const navLinks =
     );
 
 
-navLinks.forEach((link) => {
+navLinks.forEach(
+    (link) => {
 
-    link.addEventListener(
-        "click",
-        function () {
+        link.addEventListener(
+            "click",
+            function () {
 
-            navLinks.forEach(
-                (item) => {
+                navLinks.forEach(
+                    (item) => {
 
-                    item.classList.remove(
-                        "active"
-                    );
+                        item.classList.remove(
+                            "active"
+                        );
 
-                }
-            );
+                    }
+                );
 
 
-            this.classList.add(
-                "active"
-            );
+                this.classList.add(
+                    "active"
+                );
 
-        }
-    );
+            }
+        );
 
-});
+    }
+);
 
 
 /* =========================================================
