@@ -210,63 +210,59 @@ function unlockPortfolio() {
     /* =====================================================
        CALCULATE CENTER POSITION
     ===================================================== */
+/* =====================================================
+   PREPARE HEERIX FOR SMOOTH CENTER MOVE
+===================================================== */
 
-    const rect =
-        stage.getBoundingClientRect();
-
-
-    const stageCenterX =
-        rect.left +
-        (rect.width / 2);
+const rect =
+    stage.getBoundingClientRect();
 
 
-    const stageCenterY =
-        rect.top +
-        (rect.height / 2);
+/* Freeze Heerix exactly where it is */
+
+stage.style.position = "fixed";
+
+stage.style.left =
+    `${rect.left}px`;
+
+stage.style.top =
+    `${rect.top}px`;
+
+stage.style.width =
+    `${rect.width}px`;
+
+stage.style.height =
+    `${rect.height}px`;
+
+stage.style.margin = "0";
+
+stage.style.transform = "none";
 
 
-    const screenCenterX =
-        window.innerWidth / 2;
+/* Force browser to register starting position */
+
+void stage.offsetWidth;
 
 
-    const screenCenterY =
-        window.innerHeight / 2;
+/* Start the transition */
+
+entryScreen.classList.add(
+    "unlocking"
+);
 
 
-    const moveX =
-        screenCenterX -
-        stageCenterX;
+/* Move Heerix to TRUE screen center */
 
+requestAnimationFrame(() => {
 
-    const moveY =
-        screenCenterY -
-        stageCenterY;
+    stage.style.left = "50%";
 
+    stage.style.top = "50%";
 
-    /*
-     * Send movement values
-     * to CSS.
-     */
+    stage.style.transform =
+        "translate(-50%, -50%) scale(1.14)";
 
-    entryScreen.style.setProperty(
-        "--move-x",
-        `${moveX}px`
-    );
-
-
-    entryScreen.style.setProperty(
-        "--move-y",
-        `${moveY}px`
-    );
-
-
-    /* =====================================================
-       START CINEMATIC TRANSITION
-    ===================================================== */
-
-    entryScreen.classList.add(
-        "unlocking"
-    );
+});
 
 
     /*
