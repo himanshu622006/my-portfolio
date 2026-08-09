@@ -318,7 +318,7 @@ function unlockPortfolio() {
         showWelcomeMessage();
 
 
-    }, 1700);
+    }, 2600);
 
 }
 
