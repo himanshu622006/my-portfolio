@@ -22,90 +22,85 @@
 
     <section id="entryScreen" class="entry-screen">
 
-        <div class="entry-background">
+        <div class="entry-background" aria-hidden="true">
             <span class="circuit circuit-a"></span>
             <span class="circuit circuit-b"></span>
             <span class="circuit circuit-c"></span>
             <span class="circuit circuit-d"></span>
             <span class="grid-glow"></span>
+            <span class="scan-line"></span>
         </div>
 
-        <div class="boot-panel">
+        <div class="entry-layout">
 
-            <div class="heerix-stage" aria-label="Heerix AI assistant">
-                <div class="heerix-aura"></div>
-                <div class="heerix-ring ring-one"></div>
-                <div class="heerix-ring ring-two"></div>
+            <div class="entry-visual">
+                <div class="heerix-stage" aria-label="Heerix">
+                    <div class="heerix-aura"></div>
+                    <div class="heerix-ring ring-one"></div>
+                    <div class="heerix-ring ring-two"></div>
+                    <div class="orbit orbit-one"></div>
+                    <div class="orbit orbit-two"></div>
 
-                <div class="heerix-wrap">
-                    <img
-                        src="assets/heerix.png"
-                        alt="Heerix"
-                        class="entry-heerix"
-                    >
+                    <div class="heerix-wrap">
+                        <img
+                            src="assets/heerix.png"
+                            alt="Heerix"
+                            class="entry-heerix"
+                        >
+                        <span class="eye-glow eye-glow-left" aria-hidden="true"></span>
+                        <span class="eye-glow eye-glow-right" aria-hidden="true"></span>
+                    </div>
 
-                    <span class="eye-blink eye-left"></span>
-                    <span class="eye-blink eye-right"></span>
-
-                    <span class="eye-glow eye-glow-left"></span>
-                    <span class="eye-glow eye-glow-right"></span>
+                    <div class="hero-platform" aria-hidden="true">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
                 </div>
             </div>
 
-            <div class="heerix-introduction">
-                <span class="system-label">HEERIX // AI ASSISTANT</span>
+            <div class="entry-content">
+                <div class="heerix-introduction">
+                    <h1>Hello <span>Himanshu.</span></h1>
+                    <p>Ready to enter?</p>
+                </div>
 
-                <h1>Hello Himanshu.</h1>
+                <div class="access-area">
+                    <div class="access-heading">
+                        <h2>PORTFOLIO <em>ACCESS</em></h2>
+                        <span class="heading-line"><i></i></span>
+                        <p>Enter your access code to continue.</p>
+                    </div>
 
-                <p>Ready to enter?</p>
+                    <div class="glass-input-wrap">
+                        <span class="glass-lock" aria-hidden="true">⌑</span>
+                        <input
+                            id="accessCode"
+                            type="password"
+                            inputmode="numeric"
+                            autocomplete="off"
+                            placeholder="Enter access code"
+                            aria-label="Portfolio access code"
+                        >
+                        <span class="glass-arrow" aria-hidden="true">→</span>
+                    </div>
 
-                <small>Portfolio system online. Try not to break anything.</small>
+                    <button id="unlockBtn" class="unlock-button" type="button">
+                        <span>UNLOCK PORTFOLIO</span>
+                        <b>→</b>
+                    </button>
+
+                    <div id="accessError" class="access-error" aria-live="polite"></div>
+                </div>
             </div>
+        </div>
 
-            <div class="access-card">
-
-                <div class="access-topline">
-                    <span class="status-dot"></span>
-                    <span>HEERIX SYSTEM // ACCESS NODE</span>
-                </div>
-
-                <span class="access-label">AUTHENTICATION REQUIRED</span>
-
-                <h2>PORTFOLIO <em>ACCESS</em></h2>
-
-                <p>Enter your access code to continue.</p>
-
-                <label for="accessCode">ACCESS CODE</label>
-
-                <div class="input-shell">
-                    <input
-                        id="accessCode"
-                        type="password"
-                        inputmode="numeric"
-                        autocomplete="off"
-                        placeholder="Enter access code"
-                        aria-label="Portfolio access code"
-                    >
-                    <span class="input-lock">⌁</span>
-                </div>
-
-                <button id="unlockBtn" type="button">
-                    <span>UNLOCK PORTFOLIO</span>
-                    <b>→</b>
-                </button>
-
-                <div id="accessError" class="access-error" aria-live="polite"></div>
-
-                <div class="access-footer">
-                    <span>CODE</span>
-                    <i>•</i>
-                    <span>CREATE</span>
-                    <i>•</i>
-                    <span>INNOVATE</span>
-                </div>
-
-            </div>
-
+        <div class="access-footer">
+            <span>CODE</span>
+            <i>•</i>
+            <span>CREATE</span>
+            <i>•</i>
+            <span>INNOVATE</span>
         </div>
     </section>
 
@@ -132,7 +127,7 @@
 
                 <div>
                     <strong>HEERIX</strong>
-                    <small>AI ASSISTANT</small>
+                    <small>PORTFOLIO</small>
                 </div>
 
             </a>
