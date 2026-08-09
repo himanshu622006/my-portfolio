@@ -2163,18 +2163,16 @@ a {
 
 /* 3. Keep the stage centered after the movement */
 .entry-screen.unlocking .heerix-stage {
-    position: relative !important;
-    left: auto !important;
-    top: auto !important;
-    margin: 0 !important;
+    position: fixed !important;
 
-    transform:
-    translate(var(--move-x), var(--move-y))
-    scale(1.10);
+    margin: 0 !important;
 
     z-index: 9999;
 
-   
+    transition:
+        left 2.5s cubic-bezier(.22,.75,.18,1),
+        top 2.5s cubic-bezier(.22,.75,.18,1),
+        transform 2.5s cubic-bezier(.22,.75,.18,1);
 }
 
 
