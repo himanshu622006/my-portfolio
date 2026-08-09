@@ -2131,460 +2131,265 @@ a {
 }
 
 /* =========================================================
-   HEERIX → HOME CINEMATIC TRANSITION
-   LOCK PAGE DESIGN ABOVE REMAINS UNCHANGED
+   HEERIX → HOME — FINAL CINEMATIC TRANSITION
+   Single transition block — no duplicate rules
 ========================================================= */
 
-/* Hide everything except the Heerix visual during transition */
-.entry-screen.unlocking .entry-content,
-.entry-screen.unlocking .access-footer,
-.entry-screen.unlocking .entry-background {
+/* 1. Fade the access panel and background smoothly */
+.entry-screen.unlocking .entry-content {
     opacity: 0;
+    transform: translateX(40px);
     pointer-events: none;
-    transition: opacity 0.35s ease;
+
+    transition:
+        opacity 1.25s ease,
+        transform 1.25s cubic-bezier(.4, 0, .2, 1);
 }
 
-/* Keep Heerix + orbit above everything and move them to
-   the exact center of the viewport */
+.entry-screen.unlocking .access-footer {
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 1s ease;
+}
+
+.entry-screen.unlocking .entry-background {
+    opacity: 0.10;
+    transition: opacity 1.5s ease;
+}
+
+
+/* 2. Put the Heerix visual above the lock screen */
 .entry-screen.unlocking .entry-visual {
     position: fixed;
     inset: 0;
     width: 100vw;
     height: 100vh;
     min-height: 100vh;
-    z-index: 50;
 
     display: flex;
     align-items: center;
     justify-content: center;
 
+    z-index: 9998;
     pointer-events: none;
+
+    /* Smoothly brings Heerix from the left side to center */
+    animation: heerixVisualToCenter 3.6s cubic-bezier(.22,.75,.18,1) forwards;
 }
 
-/* Stage itself becomes centered */
+
+/* 3. Keep the stage centered after the movement */
 .entry-screen.unlocking .heerix-stage {
-    position: fixed !important;
+    position: relative !important;
 
-    left: 50% !important;
-    top: 50% !important;
-
-    width: 560px;
-    height: 560px;
-
+    left: auto !important;
+    top: auto !important;
     margin: 0 !important;
 
-    transform:
-        translate(-50%, -50%)
-        scale(1.08) !important;
-
-    transition:
-        left 3.8s cubic-bezier(.22,.75,.18,1),
-        top 3.8s cubic-bezier(.22,.75,.18,1),
-        transform 3.8s cubic-bezier(.22,.75,.18,1);
+    transform: scale(1);
 
     z-index: 9999;
-}
-
-/* Heerix grows slightly after reaching center */
-.entry-screen.unlocking .heerix-wrap {
-    animation:
-        heerixCenterFocus 1.7s cubic-bezier(.2,.8,.2,1) forwards;
-}
-
-/* Orbit rings accelerate */
-.entry-screen.unlocking .ring-one {
-    animation:
-        centerOrbitFast 1.7s cubic-bezier(.2,.8,.2,1) forwards;
-}
-
-.entry-screen.unlocking .ring-two {
-    animation:
-        centerOrbitFastReverse 1.7s cubic-bezier(.2,.8,.2,1) forwards;
-}
-
-.entry-screen.unlocking .orbit-one {
-    animation:
-        centerOrbitFast 1.7s cubic-bezier(.2,.8,.2,1) forwards;
-}
-
-.entry-screen.unlocking .orbit-two {
-    animation:
-        centerOrbitFastReverse 1.7s cubic-bezier(.2,.8,.2,1) forwards;
-}
-
-/* =========================================================
-   HEERIX CENTER TRANSITION — SLOW & SMOOTH
-========================================================= */
-
-/* Access panel fades at the same time */
-.entry-screen.unlocking .entry-content {
-    opacity: 0;
-    transform: translateX(45px);
-
-    transition:
-        opacity 1.4s ease,
-        transform 1.4s cubic-bezier(.4, 0, .2, 1);
-
-    pointer-events: none;
-}
-
-
-/* Footer fades */
-.entry-screen.unlocking .access-footer {
-    opacity: 0;
-
-    transition:
-        opacity 1s ease;
-}
-
-
-/* Background becomes subtle */
-.entry-screen.unlocking .entry-background {
-    opacity: 0.12;
-
-    transition:
-        opacity 1.5s ease;
-}
-
-
-/* =========================================================
-   HEERIX MOVES TO CENTER
-========================================================= */
-
-.entry-screen.unlocking .heerix-stage {
-
-    transform:
-        translate3d(
-            var(--move-x),
-            var(--move-y),
-            0
-        )
-        scale(1.08);
-
-    transition:
-        transform 3.6s
-        cubic-bezier(.22, .75, .18, 1);
-
-    z-index: 50;
-}
-
-
-/* Heerix slowly grows */
-.entry-screen.unlocking .heerix-wrap {
 
     animation:
-        heerixCenterFocus
+        heerixStageFocus
         3.6s
-        cubic-bezier(.2, .8, .2, 1)
+        cubic-bezier(.2,.8,.2,1)
         forwards;
 }
 
 
-/* =========================================================
-   ORBIT ACCELERATION
-========================================================= */
-
-.entry-screen.unlocking .ring-one {
-    animation:
-        centerOrbitFast
-        3.6s
-        cubic-bezier(.2, .8, .2, 1)
-        forwards;
-}
-
-.entry-screen.unlocking .ring-two {
-    animation:
-        centerOrbitFastReverse
-        3.6s
-        cubic-bezier(.2, .8, .2, 1)
-        forwards;
-}
-
-.entry-screen.unlocking .orbit-one {
-    animation:
-        centerOrbitFast
-        3.6s
-        cubic-bezier(.2, .8, .2, 1)
-        forwards;
-}
-
-.entry-screen.unlocking .orbit-two {
-    animation:
-        centerOrbitFastReverse
-        3.6s
-        cubic-bezier(.2, .8, .2, 1)
-        forwards;
-}
-
-
-/* =========================================================
-   HEERIX FOCUS
-========================================================= */
-
-@keyframes heerixCenterFocus {
+/* Heerix visual moves smoothly toward the exact screen center */
+@keyframes heerixVisualToCenter {
 
     0% {
-        transform: scale(1);
+        transform: translateX(-25vw);
     }
 
-    40% {
-        transform: scale(1.03);
+    35% {
+        transform: translateX(-15vw);
     }
 
     70% {
-        transform: scale(1.08);
+        transform: translateX(-5vw);
     }
 
     100% {
-        transform: scale(1.14);
+        transform: translateX(0);
     }
 }
 
 
-/* =========================================================
-   ORBIT — SLOW → FAST
-========================================================= */
-
-@keyframes centerOrbitFast {
+/* 4. Heerix gets a subtle cinematic zoom */
+@keyframes heerixStageFocus {
 
     0% {
-        transform:
-            rotate(0deg)
-            scale(1);
-    }
-
-    40% {
-        transform:
-            rotate(60deg)
-            scale(1.01);
-    }
-
-    70% {
-        transform:
-            rotate(220deg)
-            scale(1.04);
-    }
-
-    100% {
-        transform:
-            rotate(540deg)
-            scale(1.08);
-    }
-}
-
-
-@keyframes centerOrbitFastReverse {
-
-    0% {
-        transform:
-            rotate(360deg)
-            scale(1);
-    }
-
-    40% {
-        transform:
-            rotate(300deg)
-            scale(1.01);
-    }
-
-    70% {
-        transform:
-            rotate(80deg)
-            scale(1.04);
-    }
-
-    100% {
-        transform:
-            rotate(-180deg)
-            scale(1.08);
-    }
-}
-
-
-/* =========================================================
-   LOCK SCREEN FADES ONLY AFTER HEERIX REACHES CENTER
-========================================================= */
-
-.entry-screen.unlocking {
-    animation:
-        lockFadeAfterCenter
-        2.6s
-        ease
-        forwards;
-}
-
-
-/* =========================================================
-   HEERIX FOCUS
-========================================================= */
-
-@keyframes heerixCenterFocus {
-
-    0% {
-        transform:
-            scale(1);
-
+        transform: scale(0.92);
         opacity: 1;
     }
 
     35% {
-        transform:
-            scale(1.03);
-
+        transform: scale(0.96);
         opacity: 1;
     }
 
-    65% {
-        transform:
-            scale(1.09);
-
-        opacity: 1;
-    }
-
-    85% {
-        transform:
-            scale(1.14);
-
+    70% {
+        transform: scale(1.05);
         opacity: 1;
     }
 
     100% {
-        transform:
-            scale(1.18);
-
+        transform: scale(1.12);
         opacity: 1;
     }
 }
 
 
-/* =========================================================
-   ORBIT — SLOW → FAST
-========================================================= */
+/* 5. Orbit rings accelerate during the movement */
+.entry-screen.unlocking .ring-one,
+.entry-screen.unlocking .orbit-one {
+    animation:
+        orbitUnlockForward
+        3.6s
+        cubic-bezier(.2,.8,.2,1)
+        forwards;
+}
 
-@keyframes centerOrbitFast {
+.entry-screen.unlocking .ring-two,
+.entry-screen.unlocking .orbit-two {
+    animation:
+        orbitUnlockReverse
+        3.6s
+        cubic-bezier(.2,.8,.2,1)
+        forwards;
+}
+
+
+@keyframes orbitUnlockForward {
 
     0% {
-        transform:
-            rotate(0deg)
-            scale(1);
+        transform: rotate(0deg) scale(1);
     }
 
     30% {
-        transform:
-            rotate(45deg)
-            scale(1.01);
+        transform: rotate(35deg) scale(1.01);
     }
 
     65% {
-        transform:
-            rotate(210deg)
-            scale(1.04);
+        transform: rotate(210deg) scale(1.04);
     }
 
     100% {
-        transform:
-            rotate(540deg)
-            scale(1.08);
+        transform: rotate(540deg) scale(1.08);
     }
 }
 
 
-@keyframes centerOrbitFastReverse {
+@keyframes orbitUnlockReverse {
 
     0% {
-        transform:
-            rotate(360deg)
-            scale(1);
+        transform: rotate(360deg) scale(1);
     }
 
     30% {
-        transform:
-            rotate(300deg)
-            scale(1.01);
+        transform: rotate(300deg) scale(1.01);
     }
 
     65% {
-        transform:
-            rotate(70deg)
-            scale(1.04);
+        transform: rotate(70deg) scale(1.04);
     }
 
     100% {
-        transform:
-            rotate(-180deg)
-            scale(1.08);
+        transform: rotate(-180deg) scale(1.08);
     }
 }
 
 
-/* =========================================================
-   LOCK SCREEN FINAL FADE
-========================================================= */
+/* 6. Lock screen fades only after Heerix reaches center */
+.entry-screen.unlocking {
+    animation:
+        lockScreenFade
+        3.9s
+        ease
+        forwards;
 
-@keyframes lockFadeAfterCenter {
+    pointer-events: none;
+}
+
+
+@keyframes lockScreenFade {
 
     0% {
         opacity: 1;
     }
 
-    82% {
+    78% {
         opacity: 1;
     }
 
     100% {
         opacity: 0;
+        visibility: hidden;
     }
 }
 
 
-/* =========================================================
-   HOME PAGE
-========================================================= */
-
+/* 7. Home/portfolio appears softly behind the transition */
 .portfolio-enter {
-
     animation:
-        homeReveal
+        portfolioReveal
         1.15s
         cubic-bezier(.2,.8,.2,1)
         both;
 }
 
 
-@keyframes homeReveal {
+@keyframes portfolioReveal {
 
     0% {
         opacity: 0;
-
-        transform:
-            scale(1.025);
-
-        filter:
-            blur(8px);
+        transform: scale(1.025);
+        filter: blur(8px);
     }
 
     45% {
         opacity: 0.5;
-
-        filter:
-            blur(3px);
+        filter: blur(3px);
     }
 
     100% {
         opacity: 1;
-
-        transform:
-            scale(1);
-
-        filter:
-            blur(0);
+        transform: scale(1);
+        filter: blur(0);
     }
 }
 
 
 /* =========================================================
-   MOBILE
+   RESPONSIVE TRANSITION
 ========================================================= */
+
+@media (max-width: 1000px) {
+
+    @keyframes heerixVisualToCenter {
+
+        0% {
+            transform: translateX(-18vw);
+        }
+
+        35% {
+            transform: translateX(-11vw);
+        }
+
+        70% {
+            transform: translateX(-4vw);
+        }
+
+        100% {
+            transform: translateX(0);
+        }
+    }
+}
+
 
 @media (max-width: 760px) {
 
@@ -2594,12 +2399,36 @@ a {
     }
 
     .entry-screen.unlocking .heerix-stage {
-        transform:
-            translate(
-                var(--move-x),
-                var(--move-y)
-            )
-            scale(0.72);
+        transform: scale(0.72);
+    }
+
+    @keyframes heerixVisualToCenter {
+
+        0% {
+            transform: translateX(0);
+        }
+
+        100% {
+            transform: translateX(0);
+        }
+    }
+
+    @keyframes heerixStageFocus {
+
+        0% {
+            transform: scale(0.68);
+            opacity: 1;
+        }
+
+        50% {
+            transform: scale(0.70);
+            opacity: 1;
+        }
+
+        100% {
+            transform: scale(0.78);
+            opacity: 1;
+        }
     }
 }
 
@@ -2607,11 +2436,24 @@ a {
 @media (max-width: 500px) {
 
     .entry-screen.unlocking .heerix-stage {
-        transform:
-            translate(
-                var(--move-x),
-                var(--move-y)
-            )
-            scale(0.60);
+        transform: scale(0.60);
+    }
+
+    @keyframes heerixStageFocus {
+
+        0% {
+            transform: scale(0.57);
+            opacity: 1;
+        }
+
+        50% {
+            transform: scale(0.59);
+            opacity: 1;
+        }
+
+        100% {
+            transform: scale(0.66);
+            opacity: 1;
+        }
     }
 }
