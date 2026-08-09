@@ -1,4 +1,3 @@
-
 /* =========================================================
    HEERIX PORTFOLIO — COBALT + COOL GREY
    Responsive: desktop / tablet / phone
@@ -59,19 +58,17 @@ button {
 }
 
 /* =========================================================
-   ENTRY / CINEMATIC HEERIX BOOT
+   ENTRY / CINEMATIC HEERIX BOOT — V3
 ========================================================= */
 
 .entry-screen {
     position: fixed;
     inset: 0;
     z-index: 9999;
-    display: grid;
-    place-items: center;
     overflow: hidden;
     background:
-        radial-gradient(circle at 50% 38%, rgba(49,95,168,.13), transparent 29%),
-        radial-gradient(circle at 50% 100%, rgba(49,95,168,.07), transparent 42%),
+        radial-gradient(circle at 24% 48%, rgba(49,95,168,.10), transparent 27%),
+        radial-gradient(circle at 76% 48%, rgba(49,95,168,.07), transparent 30%),
         var(--bg);
     isolation: isolate;
 }
@@ -82,10 +79,10 @@ button {
     pointer-events: none;
     overflow: hidden;
     background:
-        linear-gradient(rgba(120,145,175,.035) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(120,145,175,.035) 1px, transparent 1px);
-    background-size: 64px 64px;
-    mask-image: linear-gradient(to bottom, black, rgba(0,0,0,.25));
+        linear-gradient(rgba(120,145,175,.028) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(120,145,175,.028) 1px, transparent 1px);
+    background-size: 58px 58px;
+    mask-image: linear-gradient(to bottom, black, rgba(0,0,0,.45));
 }
 
 .grid-glow {
@@ -94,27 +91,38 @@ button {
     height: 55vw;
     max-width: 850px;
     max-height: 850px;
-    left: 50%;
-    top: 43%;
+    left: 26%;
+    top: 48%;
     transform: translate(-50%, -50%);
     border-radius: 50%;
-    background: radial-gradient(circle, rgba(49,95,168,.11), transparent 62%);
-    filter: blur(8px);
+    background: radial-gradient(circle, rgba(49,95,168,.10), transparent 64%);
+    filter: blur(10px);
     animation: ambientPulse 6s ease-in-out infinite;
+}
+
+.scan-line {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: -2px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(71,120,190,.32), transparent);
+    opacity: .35;
+    animation: scanLine 7s linear infinite;
 }
 
 .circuit {
     position: absolute;
     width: 180px;
     height: 180px;
-    opacity: .55;
+    opacity: .45;
 }
 
 .circuit::before,
 .circuit::after {
     content: "";
     position: absolute;
-    border-color: rgba(71,120,190,.35);
+    border-color: rgba(71,120,190,.30);
     border-style: solid;
 }
 
@@ -133,41 +141,48 @@ button {
 .circuit::after {
     width: 5px;
     height: 5px;
-    border: 1px solid var(--cobalt-light);
+    border-width: 1px;
     border-radius: 50%;
-    box-shadow: 0 0 14px rgba(71,120,190,.6);
+    box-shadow: 0 0 14px rgba(71,120,190,.45);
 }
 
-.boot-panel {
+.entry-layout {
     position: relative;
     z-index: 3;
-    width: min(560px, calc(100% - 34px));
-    display: flex;
-    flex-direction: column;
+    min-height: 100vh;
+    width: min(1280px, 92vw);
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: minmax(420px, .95fr) minmax(440px, 1.05fr);
     align-items: center;
-    text-align: center;
-    padding: 22px 0 28px;
+    gap: clamp(50px, 7vw, 115px);
+    padding: 48px 0 105px;
 }
 
-/* Heerix */
+.entry-visual {
+    min-height: 610px;
+    display: grid;
+    place-items: center;
+}
 
 .heerix-stage {
     position: relative;
-    width: 285px;
-    height: 285px;
+    width: min(43vw, 560px);
+    height: min(43vw, 560px);
+    min-width: 390px;
+    min-height: 390px;
     display: grid;
     place-items: center;
-    margin-bottom: 4px;
-    animation: stageReveal 1.4s cubic-bezier(.2,.8,.2,1) both;
+    animation: stageReveal 1.5s cubic-bezier(.16,1,.3,1) both;
 }
 
 .heerix-aura {
     position: absolute;
-    width: 225px;
-    height: 225px;
+    width: 65%;
+    height: 65%;
     border-radius: 50%;
-    background: radial-gradient(circle, rgba(71,120,190,.17), transparent 67%);
-    filter: blur(10px);
+    background: radial-gradient(circle, rgba(71,120,190,.18), transparent 68%);
+    filter: blur(18px);
     animation: auraBreathe 4.5s ease-in-out infinite;
 }
 
@@ -179,25 +194,43 @@ button {
 }
 
 .ring-one {
-    width: 265px;
-    height: 265px;
+    width: 72%;
+    height: 72%;
     border-left-color: transparent;
     border-right-color: rgba(71,120,190,.42);
     animation: rotateRing 18s linear infinite;
 }
 
 .ring-two {
-    width: 225px;
-    height: 225px;
-    border-top-color: rgba(167,176,188,.18);
+    width: 57%;
+    height: 57%;
+    border-top-color: rgba(167,176,188,.17);
     border-bottom-color: transparent;
     animation: rotateRingReverse 13s linear infinite;
 }
 
+.orbit {
+    position: absolute;
+    width: 83%;
+    height: 29%;
+    border: 1px solid rgba(71,120,190,.19);
+    border-radius: 50%;
+    transform: rotate(-18deg);
+}
+
+.orbit-one { animation: orbitMove 12s linear infinite; }
+.orbit-two {
+    width: 69%;
+    height: 23%;
+    transform: rotate(35deg);
+    border-color: rgba(167,176,188,.10);
+    animation: orbitMoveReverse 16s linear infinite;
+}
+
 .heerix-wrap {
     position: relative;
-    width: 245px;
-    height: 245px;
+    width: 56%;
+    height: 56%;
     display: grid;
     place-items: center;
     animation: heerixFloat 4.4s ease-in-out 2s infinite;
@@ -208,248 +241,255 @@ button {
     height: 100%;
     object-fit: contain;
     mix-blend-mode: screen;
-    filter: drop-shadow(0 12px 25px rgba(49,95,168,.22));
+    filter: drop-shadow(0 18px 28px rgba(49,95,168,.25));
     transform-origin: center center;
     animation: heerixBootZoom 1.9s cubic-bezier(.16,1,.3,1) both;
 }
 
-.eye-blink,
 .eye-glow {
     position: absolute;
-    pointer-events: none;
-    opacity: 0;
-}
-
-.eye-blink {
-    width: 13.5%;
-    height: 15%;
-    top: 20%;
-    background: #f4f7fb;
+    width: 9%;
+    height: 11%;
+    top: 22%;
     border-radius: 50%;
-    z-index: 4;
-    transform: scaleY(.12);
-}
-
-.eye-left { left: 35.5%; }
-.eye-right { left: 50.8%; }
-
-.eye-glow {
-    width: 10%;
-    height: 13%;
-    top: 21%;
-    border-radius: 50%;
-    background: rgba(71,120,190,.6);
+    background: rgba(71,120,190,.72);
     filter: blur(8px);
-    z-index: 3;
+    opacity: 0;
+    pointer-events: none;
 }
 
 .eye-glow-left { left: 37%; }
 .eye-glow-right { left: 52%; }
 
-.entry-screen.ready .eye-blink {
-    animation: eyeBlink 3.4s ease-in-out 1.05s 1;
-}
-
 .entry-screen.ready .eye-glow {
     animation: eyeFlicker 1.15s steps(5,end) 1.05s 1;
 }
 
-/* Greeting */
+.hero-platform {
+    position: absolute;
+    bottom: 11%;
+    width: 54%;
+    height: 11%;
+    border: 1px solid rgba(71,120,190,.24);
+    border-radius: 50%;
+    box-shadow: 0 0 35px rgba(49,95,168,.12);
+    transform: perspective(200px) rotateX(58deg);
+    opacity: .75;
+}
+
+.hero-platform::before,
+.hero-platform::after {
+    content: "";
+    position: absolute;
+    inset: 12% 14%;
+    border: 1px solid rgba(71,120,190,.20);
+    border-radius: 50%;
+}
+
+.hero-platform::after {
+    inset: 28% 31%;
+    background: rgba(71,120,190,.13);
+    box-shadow: 0 0 22px rgba(71,120,190,.18);
+}
+
+.entry-content {
+    align-self: center;
+    padding-top: 12px;
+}
 
 .heerix-introduction {
     animation: textRise .9s ease 1.15s both;
 }
 
-.system-label {
-    color: var(--cobalt-light);
-    font-size: 10px;
-    letter-spacing: 3px;
-    font-weight: 600;
+.heerix-introduction h1 {
+    font-size: clamp(48px, 5vw, 72px);
+    line-height: .98;
+    margin: 0 0 13px;
+    letter-spacing: -2.5px;
+    font-weight: 650;
 }
 
-.heerix-introduction h1 {
-    font-size: clamp(28px, 4vw, 39px);
-    line-height: 1;
-    margin: 14px 0 9px;
-    letter-spacing: -.8px;
+.heerix-introduction h1 span {
+    color: var(--cobalt-light);
 }
 
 .heerix-introduction p {
     color: var(--grey-light);
-    font-size: 17px;
-    margin-bottom: 5px;
+    font-size: clamp(19px, 2vw, 24px);
 }
 
-.heerix-introduction small {
-    color: var(--muted);
-    font-size: 11px;
-    letter-spacing: .4px;
-}
-
-/* Access card */
-
-.access-card {
-    width: min(100%, 455px);
-    margin-top: 25px;
-    padding: 24px 26px 20px;
-    background:
-        linear-gradient(145deg, rgba(20,30,42,.94), rgba(9,14,21,.96));
-    border: 1px solid rgba(71,120,190,.38);
-    box-shadow:
-        var(--shadow),
-        inset 0 1px 0 rgba(255,255,255,.035);
-    backdrop-filter: blur(18px);
-    text-align: left;
+.access-area {
+    margin-top: clamp(50px, 6vw, 72px);
+    max-width: 600px;
     opacity: 0;
-    transform: translateY(22px) scale(.98);
+    transform: translateY(18px);
     pointer-events: none;
-    transition: opacity .7s ease, transform .7s cubic-bezier(.2,.8,.2,1);
+    transition: opacity .75s ease, transform .75s cubic-bezier(.2,.8,.2,1);
 }
 
-.entry-screen.ready .access-card {
+.entry-screen.ready .access-area {
     opacity: 1;
-    transform: translateY(0) scale(1);
+    transform: translateY(0);
     pointer-events: auto;
 }
 
-.access-topline {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    color: var(--muted);
-    font-size: 9px;
-    letter-spacing: 2px;
-    margin-bottom: 17px;
-}
-
-.status-dot {
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: #6d8fb9;
-    box-shadow: 0 0 10px rgba(71,120,190,.7);
-    animation: statusPulse 2s ease-in-out infinite;
-}
-
-.access-label {
-    color: var(--cobalt-light);
-    font-size: 10px;
-    font-weight: 600;
-    letter-spacing: 2.4px;
-}
-
-.access-card h2 {
-    font-size: clamp(30px, 5vw, 43px);
+.access-heading h2 {
+    font-size: clamp(27px, 3vw, 38px);
+    letter-spacing: 5px;
+    font-weight: 650;
     line-height: 1;
-    letter-spacing: -1.5px;
-    margin: 11px 0 10px;
 }
 
-.access-card h2 em {
+.access-heading h2 em {
     color: var(--cobalt-light);
     font-style: normal;
 }
 
-.access-card p {
-    color: var(--grey);
-    font-size: 13px;
-    margin-bottom: 20px;
-}
-
-.access-card label {
+.heading-line {
     display: block;
-    color: var(--grey-light);
-    font-size: 9px;
-    letter-spacing: 2px;
-    margin-bottom: 8px;
-}
-
-.input-shell {
+    width: 175px;
+    height: 1px;
+    margin: 18px 0 17px;
+    background: linear-gradient(90deg, var(--cobalt), transparent);
     position: relative;
 }
 
-.access-card input {
-    width: 100%;
-    height: 49px;
-    padding: 0 45px 0 15px;
-    background: rgba(4,8,13,.8);
-    border: 1px solid rgba(137,157,181,.26);
-    color: var(--white);
-    outline: none;
-    border-radius: 2px;
-    transition: border-color .25s ease, box-shadow .25s ease;
-}
-
-.access-card input::placeholder {
-    color: #536170;
-}
-
-.access-card input:focus {
-    border-color: var(--cobalt-light);
-    box-shadow: 0 0 0 3px rgba(49,95,168,.10);
-}
-
-.input-lock {
+.heading-line i {
     position: absolute;
-    right: 16px;
+    left: 68%;
     top: 50%;
-    transform: translateY(-50%);
-    color: var(--grey);
-    font-size: 17px;
-    opacity: .7;
+    width: 6px;
+    height: 6px;
+    border: 1px solid var(--cobalt-light);
+    transform: translate(-50%, -50%) rotate(45deg);
+    background: var(--bg);
 }
 
-.access-card button {
+.access-heading p {
+    color: var(--grey);
+    font-size: 14px;
+    margin-bottom: 21px;
+}
+
+.glass-input-wrap {
+    position: relative;
     width: 100%;
-    height: 49px;
-    margin-top: 11px;
-    border: 1px solid rgba(71,120,190,.75);
-    border-radius: 2px;
+    height: 62px;
+    display: flex;
+    align-items: center;
+    border: 1px solid rgba(167,176,188,.28);
+    border-radius: 10px;
+    background: linear-gradient(135deg, rgba(255,255,255,.045), rgba(255,255,255,.012));
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.055), 0 12px 40px rgba(0,0,0,.16);
+    overflow: hidden;
+    transition: border-color .3s ease, box-shadow .3s ease, transform .3s ease;
+}
+
+.glass-input-wrap::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--cobalt-light), transparent);
+    opacity: .4;
+}
+
+.glass-input-wrap:focus-within {
+    border-color: rgba(71,120,190,.75);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.07), 0 0 0 4px rgba(49,95,168,.08), 0 18px 45px rgba(0,0,0,.20);
+    transform: translateY(-1px);
+}
+
+.glass-lock {
+    width: 54px;
+    display: grid;
+    place-items: center;
+    color: var(--grey-light);
+    font-size: 22px;
+    border-right: 1px solid rgba(167,176,188,.15);
+    height: 31px;
+}
+
+.glass-input-wrap input {
+    flex: 1;
+    min-width: 0;
+    height: 100%;
+    padding: 0 14px;
+    border: 0;
+    outline: 0;
+    background: transparent;
+    color: var(--white);
+    font-size: 15px;
+}
+
+.glass-input-wrap input::placeholder { color: #667487; }
+
+.glass-arrow {
+    width: 55px;
+    display: grid;
+    place-items: center;
+    color: var(--grey-light);
+    font-size: 25px;
+}
+
+.unlock-button {
+    width: 100%;
+    height: 58px;
+    margin-top: 14px;
+    border: 1px solid rgba(71,120,190,.65);
+    border-radius: 8px;
     background: linear-gradient(180deg, #315fa8, #274e8a);
-    color: #fff;
+    color: white;
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 18px;
-    letter-spacing: 2.2px;
-    font-size: 10px;
+    letter-spacing: 2.5px;
+    font-size: 11px;
     font-weight: 700;
     transition: transform .25s ease, box-shadow .25s ease, background .25s ease;
 }
 
-.access-card button b {
-    font-size: 18px;
+.unlock-button b {
+    font-size: 20px;
     font-weight: 400;
-    line-height: 1;
 }
 
-.access-card button:hover {
+.unlock-button:hover {
     transform: translateY(-2px);
-    box-shadow: 0 12px 30px rgba(49,95,168,.24);
+    box-shadow: 0 14px 35px rgba(49,95,168,.22);
     background: linear-gradient(180deg, #3a6eb8, #2b568f);
 }
 
-.access-card button:active {
-    transform: translateY(0);
-}
+.unlock-button:active { transform: translateY(0); }
+.unlock-button:disabled { opacity: .85; cursor: wait; }
 
 .access-error {
     min-height: 18px;
     color: var(--danger);
     font-size: 10px;
-    text-align: center;
+    text-align: left;
     margin-top: 9px;
 }
 
 .access-footer {
+    position: absolute;
+    z-index: 4;
+    left: 50%;
+    bottom: 28px;
+    transform: translateX(-50%);
     display: flex;
-    justify-content: center;
     align-items: center;
-    gap: 9px;
-    color: #6d7885;
-    font-size: 8px;
-    letter-spacing: 2.4px;
-    margin-top: 8px;
+    justify-content: center;
+    gap: 13px;
+    color: #7e8997;
+    font-size: 9px;
+    letter-spacing: 3.2px;
+    white-space: nowrap;
 }
 
 .access-footer i {
@@ -460,6 +500,7 @@ button {
 /* =========================================================
    PORTFOLIO / NAVBAR
 ========================================================= */
+
 
 .hidden {
     display: none !important;
@@ -1339,4 +1380,101 @@ button {
         scroll-behavior: auto !important;
         transition-duration: .001ms !important;
     }
+}
+
+
+/* =========================================================
+   V3 ENTRY RESPONSIVE OVERRIDES
+========================================================= */
+
+@media (max-width: 900px) {
+    .entry-layout {
+        grid-template-columns: 1fr;
+        width: min(650px, 92vw);
+        gap: 10px;
+        padding: 28px 0 100px;
+        align-content: center;
+    }
+
+    .entry-visual {
+        min-height: 350px;
+    }
+
+    .heerix-stage {
+        width: 350px;
+        height: 350px;
+        min-width: 0;
+        min-height: 0;
+    }
+
+    .entry-content {
+        text-align: center;
+        padding-top: 0;
+    }
+
+    .access-area {
+        margin-inline: auto;
+        margin-top: 38px;
+    }
+
+    .heading-line {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .access-error { text-align: center; }
+}
+
+@media (max-width: 520px) {
+    .entry-layout {
+        width: min(94vw, 430px);
+        padding-top: 16px;
+    }
+
+    .entry-visual { min-height: 275px; }
+
+    .heerix-stage {
+        width: 275px;
+        height: 275px;
+    }
+
+    .heerix-introduction h1 {
+        font-size: 40px;
+        letter-spacing: -1.7px;
+    }
+
+    .heerix-introduction p { font-size: 18px; }
+
+    .access-area { margin-top: 31px; }
+
+    .access-heading h2 {
+        font-size: 24px;
+        letter-spacing: 3px;
+    }
+
+    .access-heading p { font-size: 12px; }
+
+    .glass-input-wrap { height: 56px; }
+    .unlock-button { height: 54px; }
+
+    .access-footer {
+        bottom: 18px;
+        font-size: 8px;
+        letter-spacing: 2px;
+    }
+}
+
+@keyframes scanLine {
+    from { transform: translateY(-5vh); }
+    to { transform: translateY(105vh); }
+}
+
+@keyframes orbitMove {
+    from { transform: rotate(-18deg) rotate(0deg); }
+    to { transform: rotate(-18deg) rotate(360deg); }
+}
+
+@keyframes orbitMoveReverse {
+    from { transform: rotate(35deg) rotate(360deg); }
+    to { transform: rotate(35deg) rotate(0deg); }
 }
