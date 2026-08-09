@@ -31,11 +31,9 @@ window.addEventListener("DOMContentLoaded", () => {
      * The access interface becomes active after the intro.
      */
 
-    setTimeout(() => {
-        if (entryScreen) {
-            entryScreen.classList.add("ready");
-        }
-    }, 2600);
+   setTimeout(() => {
+    entryScreen.classList.add("ready");
+}, 1800);
 
 
     /*
@@ -52,7 +50,7 @@ window.addEventListener("DOMContentLoaded", () => {
             accessCode.focus();
         }
 
-    }, 3300);
+   }, 2400);
 
 });
 
