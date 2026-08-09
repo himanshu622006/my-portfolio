@@ -212,8 +212,8 @@ a {
 .heerix-stage {
     position: relative;
 
-    width: 450px;
-    height: 450px;
+    width: 560px;
+    height: 560px;
 
     display: flex;
     align-items: center;
@@ -263,16 +263,16 @@ a {
 }
 
 .ring-one {
-    width: 390px;
-    height: 390px;
+    width: 560px;
+    height: 560px;
 
     animation:
         ringRotate 18s linear infinite;
 }
 
 .ring-two {
-    width: 330px;
-    height: 330px;
+    width: 470px;
+    height: 470px;
 
     border-color:
         rgba(92, 130, 185, 0.17);
@@ -289,8 +289,8 @@ a {
 .orbit {
     position: absolute;
 
-    width: 410px;
-    height: 170px;
+    width: 560px;
+    height: 220px;
 
     border:
         1px solid
@@ -309,8 +309,8 @@ a {
 }
 
 .orbit-two {
-    width: 380px;
-    height: 145px;
+    width: 500px;
+    height: 190px;
 
     transform: rotate(-38deg);
 
@@ -331,8 +331,8 @@ a {
 
     z-index: 5;
 
-    width: 250px;
-    height: 250px;
+    width: 392px;
+    height: 392px;
 
     display: flex;
     align-items: center;
@@ -349,15 +349,15 @@ a {
 
 
 .entry-heerix {
-    width: 225px;
-    height: 225px;
+    width: 392px;
+    height: 392px;
 
     object-fit: contain;
 
     filter:
         drop-shadow(
-            0 0 16px
-            rgba(93, 142, 211, 0.55)
+            0 0 20px
+            rgba(93, 142, 211, 0.60)
         );
 
     user-select: none;
